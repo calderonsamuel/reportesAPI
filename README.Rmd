@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/reportesAPI)](https://CRAN.R-project.org/package=reportesAPI)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/calderonsamuel/reportesAPI/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/calderonsamuel/reportesAPI/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/calderonsamuel/reportesAPI/branch/main/graph/badge.svg)](https://app.codecov.io/gh/calderonsamuel/reportesAPI?branch=main)
 <!-- badges: end -->
 
 The goal of reportesAPI is to be able to get data from a Reportes instance for use in the app or in analysis.
@@ -52,17 +54,10 @@ library(reportesAPI)
 man <- DBManager$new()
 ```
 
+When fetching data, instead of returning a data.frame, by default we get a tibble.
 
 ```{r cars}
-summary(cars)
+man$db_get_query("SELECT user_id, time_last_modified FROM users")
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+To start an instance of `AppData` is necessary to provide an email. This will not be done here for security reasons.

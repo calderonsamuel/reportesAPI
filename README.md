@@ -9,6 +9,9 @@
 status](https://www.r-pkg.org/badges/version/reportesAPI)](https://CRAN.R-project.org/package=reportesAPI)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/calderonsamuel/reportesAPI/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/calderonsamuel/reportesAPI/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/calderonsamuel/reportesAPI/branch/main/graph/badge.svg)](https://app.codecov.io/gh/calderonsamuel/reportesAPI?branch=main)
 <!-- badges: end -->
 
 The goal of reportesAPI is to be able to get data from a Reportes
@@ -17,12 +20,12 @@ instance for use in the app or in analysis.
 The user should also have an `.Renviron` file containing the following
 variables:
 
-- `DB_HOST`
-- `DB_NAME`
-- `DB_USER`
-- `DB_SECRET`
-- `DB_PORT`
-- `REPORTES_EMAIL` (Optional)
+-   `DB_HOST`
+-   `DB_NAME`
+-   `DB_USER`
+-   `DB_SECRET`
+-   `DB_PORT`
+-   `REPORTES_EMAIL` (Optional)
 
 The package asumes you are using RMariaDB for data storage.
 
@@ -47,26 +50,22 @@ man <- DBManager$new()
 #> ℹ Connected to DB
 ```
 
+When fetching data, instead of returning a data.frame, by default we get
+a tibble.
+
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+man$db_get_query("SELECT user_id, time_last_modified FROM users")
+#> # A tibble: 7 × 2
+#>   user_id                          time_last_modified 
+#>   <chr>                            <dttm>             
+#> 1 84f82757d27e55f7f781865524a7d0ae 2022-11-11 20:42:58
+#> 2 81d8169fc25c672e452775ba5eec4cd8 2022-11-11 20:42:58
+#> 3 243caa4a7de6f9212adbdc2f50ea97ec 2022-11-11 20:42:58
+#> 4 d618dc956854bc12fa8084ae7f543dbd 2022-11-11 20:42:58
+#> 5 3fd4eafdffff29d0f131304e35091549 2022-11-11 20:42:58
+#> 6 2b4cd2e9a4a8f6f995e2a4ae0de7331e 2022-11-11 20:42:58
+#> 7 25ec41daa87947b1d326d5515dc7b9a9 2022-11-11 20:42:58
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+To start an instance of `AppData` is necessary to provide an email. This
+will not be done here for security reasons.
