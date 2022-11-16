@@ -7,7 +7,8 @@ Authors@R:
 Description: Consulta los datos contenidos en la base de datos de reportes
     de tareas.
 License: MIT + file LICENSE
-URL: https://github.com/calderonsamuel/reportesAPI
+URL: https://github.com/calderonsamuel/reportesAPI,
+    https://calderonsamuel.github.io/reportesAPI/
 BugReports: https://github.com/calderonsamuel/reportesAPI/issues
 Imports: 
     cli,
