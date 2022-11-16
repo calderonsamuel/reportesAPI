@@ -5,6 +5,8 @@
 #' @param email The email the user started the session with.
 #' @param name Name to be inserted as user metadata.
 #' @param last_name Last name to be inserted as user metadata.
+#' @importFrom ids random_id
+#' @importFrom rlang current_env
 User <- R6::R6Class(
     classname = "User",
     inherit = DBManager,

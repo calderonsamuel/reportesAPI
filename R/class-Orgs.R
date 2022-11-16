@@ -28,7 +28,7 @@ Organisation <- R6::R6Class(
             self$org_user_add(
                 org_id = org_id,
                 user_id = self$user$user_id,
-                role = "ownr"
+                role = "owner"
             )
 
             private$sync_orgs()
@@ -169,7 +169,7 @@ Organisation <- R6::R6Class(
                 "INSERT INTO organisations
                 SET
                     org_id = {id},
-                    org_title = 'Organización sin nombre',
+                    org_title = 'Organizacion sin nombre',
                     org_description = '',
                     time_creation = {t_stamp},
                     time_last_modified = {t_stamp}"

@@ -5,6 +5,14 @@
 #' @param use_tibble Whether print the results of DbGetQuery() as a tibble or not. Default TRUE
 #' @param tz Timezone to be passed to `lubridate::now()`
 #' @param ... Objects passed to glue::glue_sql() with the exception of the `.con` argument.
+#' @export
+#' @importFrom DBI dbConnect dbExecute dbGetQuery dbDisconnect
+#' @importFrom glue glue_sql
+#' @importFrom cli cli_alert_info
+#' @importFrom tibble as_tibble
+#' @importFrom lubridate now
+#' @importFrom R6 R6Class
+#' @importFrom RMariaDB MariaDB
 DBManager <- R6::R6Class(
     classname = "DBManager",
     public = list(

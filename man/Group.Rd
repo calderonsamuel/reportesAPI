@@ -39,17 +39,17 @@ R6 class that allows to get the Group information.
 \if{html}{\out{
 <details><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_execute_statement"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_execute_statement'><code>reportesAPI::DBManager$db_execute_statement()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_get_query"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_get_query'><code>reportesAPI::DBManager$db_get_query()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_make_query"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_make_query'><code>reportesAPI::DBManager$db_make_query()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="get_timestamp"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-get_timestamp'><code>reportesAPI::DBManager$get_timestamp()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="User" data-id="user_edit_names"><a href='../../reportesAPI/html/User.html#method-User-user_edit_names'><code>reportesAPI::User$user_edit_names()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_edit"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_edit'><code>reportesAPI::Organisation$org_edit()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_finalize"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_finalize'><code>reportesAPI::Organisation$org_finalize()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_initialize"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_initialize'><code>reportesAPI::Organisation$org_initialize()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_user_add"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_user_add'><code>reportesAPI::Organisation$org_user_add()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_user_delete"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_user_delete'><code>reportesAPI::Organisation$org_user_delete()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_user_edit"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_user_edit'><code>reportesAPI::Organisation$org_user_edit()</code></a></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_execute_statement"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_execute_statement'><code>reportesAPI::DBManager$db_execute_statement()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_get_query"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_get_query'><code>reportesAPI::DBManager$db_get_query()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_make_query"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_make_query'><code>reportesAPI::DBManager$db_make_query()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="get_timestamp"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-get_timestamp'><code>reportesAPI::DBManager$get_timestamp()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="User" data-id="user_edit_names"><a href='../../reportesAPI/html/User.html#method-User-user_edit_names'><code>reportesAPI::User$user_edit_names()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_edit"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_edit'><code>reportesAPI::Organisation$org_edit()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_finalize"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_finalize'><code>reportesAPI::Organisation$org_finalize()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_initialize"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_initialize'><code>reportesAPI::Organisation$org_initialize()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_user_add"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_user_add'><code>reportesAPI::Organisation$org_user_add()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_user_delete"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_user_delete'><code>reportesAPI::Organisation$org_user_delete()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_user_edit"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_user_edit'><code>reportesAPI::Organisation$org_user_edit()</code></a></span></li>
 </ul>
 </details>
 }}

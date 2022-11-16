@@ -20,6 +20,8 @@
 #' @param output_progress Quantity of the progress being reported. Is measured in the unit specified in the creation of the task
 #' @param status The status of the task once the new progress is added
 #' @param details Explanation of the progress made
+#' @importFrom cli cli_alert_success cli_h2
+#' @importFrom purrr pmap keep map reduce
 Task <- R6::R6Class(
     classname = "Task",
     inherit = Group,
@@ -34,9 +36,7 @@ Task <- R6::R6Class(
                             task_title, task_description, assignee, time_due,
                             output_unit, output_goal) {
 
-            if (xor(is.na(process_id), is.na(activity_id))) {
-                rlang::abort("`process_id` y `activity_id` deben ser o NA o chr en simultáneo")
-            }
+            private$check_process(process_id, activity_id)
 
             task_id <- ids::random_id()
             t_stamp <- super$get_timestamp()
@@ -280,7 +280,7 @@ Task <- R6::R6Class(
         },
         check_process = function(process_id, activity_id) {
             if (xor(is.na(process_id), is.na(activity_id))) {
-                rlang::abort("`process_id` y `activity_id` deben ser o NA o chr en simultáneo")
+                rlang::abort("`process_id` y `activity_id` deben ser o NA o chr en simultaneo")
             }
         },
         get_assignees = function() {
