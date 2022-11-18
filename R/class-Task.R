@@ -232,6 +232,23 @@ Task <- R6::R6Class(
             cli::cli_alert_info("group_id: {group_id}")
             cli::cli_alert_warning("task_id: {task_id}")
             cli::cli_alert_warning("status: {status}")
+        },
+        #' @description Get a task's progression history
+        task_get_history = function(task_id) {
+            subquery_progress <-
+                "SELECT reported_by, output_progress, status, time_reported, details
+                FROM progress
+                WHERE task_id = {task_id}" |>
+                super$db_make_query(task_id = task_id)
+
+            query <-
+                "SELECT output_progress, status, time_reported, details,
+                        CONCAT(name, ' ', last_name) AS user_names
+                FROM ({subquery}) AS lhs
+                INNER JOIN users rhs ON
+                    lhs.reported_by = rhs.user_id"
+
+            super$db_get_query(query, subquery = subquery_progress)
         }
     ),
     private = list(
