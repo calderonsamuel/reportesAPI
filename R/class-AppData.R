@@ -9,7 +9,7 @@ AppData <- R6::R6Class(
     inherit = Task,
     public = list(
         #' @description Start a session of app data based on an user email
-        initialize = function(email) {
+        initialize = function(email = Sys.getenv("REPORTES_EMAIL")) {
             super$initialize(email)
         }
     )
