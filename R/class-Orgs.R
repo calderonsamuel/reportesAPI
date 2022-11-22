@@ -12,14 +12,9 @@ Organisation <- R6::R6Class(
     classname = "Organisation",
     inherit = User,
     public = list(
-        #' @field orgs List containing the organisation affiliations of the User
-        orgs = NULL,
-        #' @field org_users List containing the user list of the organisation. The info is shown following the User's organisation role.
-        org_users = NULL,
         #' @description Start an Organisation based on an user email
         initialize = function(email) {
             super$initialize(email)
-            private$sync_orgs()
         },
         #' @description Initialize an organisation for a new user
         org_initialize = function() {
@@ -30,8 +25,6 @@ Organisation <- R6::R6Class(
                 user_id = self$user$user_id,
                 role = "owner"
             )
-
-            private$sync_orgs()
 
             cli::cli_alert_info("Initialized org '{org_id}'")
         },
@@ -49,8 +42,6 @@ Organisation <- R6::R6Class(
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
-            private$sync_orgs()
-
             cli::cli_alert_info("Edited org '{org_id}'")
         },
         #' @description Add an user to an organisation
@@ -67,8 +58,6 @@ Organisation <- R6::R6Class(
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
-            private$sync_org_users()
-
             cli::cli_alert_info("User '{user_id}' inserted into org '{org_id}' with role '{role}'")
         },
         #' @description Delete an user from an organisation
@@ -80,7 +69,6 @@ Organisation <- R6::R6Class(
                     user_id = {user_id}"
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
-            private$sync_org_users()
 
             cli::cli_alert_info("User '{user_id}' deleted from org '{org_id}'")
         },
@@ -97,8 +85,6 @@ Organisation <- R6::R6Class(
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
-            private$sync_org_users()
-
             cli::cli_alert_info("User '{user_id}' now has role '{org_role}' in org '{org_id}'")
         },
 
@@ -111,7 +97,7 @@ Organisation <- R6::R6Class(
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
-            private$org_delete(org_id) # this syncs after
+            private$org_delete(org_id)
 
             cli::cli_alert_info("Finalized org '{org_id}'")
         }
@@ -184,13 +170,16 @@ Organisation <- R6::R6Class(
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
             private$sync_orgs()
+        }
+    ),
+    active = list(
+        #' @field orgs List containing the organisation affiliations of the User
+        orgs = function() {
+            private$get_orgs()
         },
-        sync_orgs = function() {
-            self$orgs <- private$get_orgs()
-            self$org_users <- private$get_org_users()
-        },
-        sync_org_users = function() {
-            self$org_users <- private$get_org_users()
+        #' @field org_users List containing the user list of the organisation. The info is shown following the User's organisation role.
+        org_users = function() {
+            private$get_org_users()
         }
     )
 )
