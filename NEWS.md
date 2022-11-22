@@ -1,3 +1,7 @@
+# reportesAPI 0.1.3
+
+- Fixed a bug that prevented the `group` field to be treated as a regular list.
+
 # reportesAPI 0.1.2
 
 - Former public fields `orgs`, `org_users`, `groups` and `group_users` are now active fields
