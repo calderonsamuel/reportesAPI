@@ -1,3 +1,7 @@
+# reportesAPI 0.1.4
+
+- Fixed a bug that prevented group user edition
+
 # reportesAPI 0.1.3
 
 - Fixed a bug that prevented the `group` field to be treated as a regular list.
