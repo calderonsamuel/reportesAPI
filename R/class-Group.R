@@ -93,7 +93,6 @@ Group <- R6::R6Class(
                     user_id = {user_id}"
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
-            private$sync_group_users()
 
             cli::cli_alert_info("User '{user_id}' now has role '{group_role}' in group '{group_id} in org '{org_id}'")
         },
