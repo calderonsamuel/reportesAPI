@@ -1,3 +1,7 @@
+# reportesAPI 0.1.2
+
+- Former public fields `orgs`, `org_users`, `groups` and `group_users` are now active fields
+
 # reportesAPI 0.1.1
 
 - Email is now hanled from an environment variable.
