@@ -14,8 +14,8 @@ R6 class that allows to get the Group information.
 \section{Super classes}{
 \code{\link[reportesAPI:DBManager]{reportesAPI::DBManager}} -> \code{\link[reportesAPI:User]{reportesAPI::User}} -> \code{\link[reportesAPI:Organisation]{reportesAPI::Organisation}} -> \code{Group}
 }
-\section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
+\section{Active bindings}{
+\if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
 \item{\code{groups}}{List containing the group affiliations of the User}
 

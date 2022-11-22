@@ -30,6 +30,7 @@ R6 class that allows to get the Group information.
 \item \href{#method-Task-task_report_progress}{\code{Task$task_report_progress()}}
 \item \href{#method-Task-task_edit_metadata}{\code{Task$task_edit_metadata()}}
 \item \href{#method-Task-progress_add}{\code{Task$progress_add()}}
+\item \href{#method-Task-task_get_history}{\code{Task$task_get_history()}}
 \item \href{#method-Task-clone}{\code{Task$clone()}}
 }
 }
@@ -263,6 +264,23 @@ Insert progress info on some task
 \item{\code{status}}{The status of the task once the new progress is added}
 
 \item{\code{details}}{Explanation of the progress made}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Task-task_get_history"></a>}}
+\if{latex}{\out{\hypertarget{method-Task-task_get_history}{}}}
+\subsection{Method \code{task_get_history()}}{
+Get a task's progression history
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Task$task_get_history(task_id)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{task_id}}{The id of the task on which the statement will be executed}
 }
 \if{html}{\out{</div>}}
 }

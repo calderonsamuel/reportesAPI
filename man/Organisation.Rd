@@ -14,8 +14,8 @@ R6 class that allows to get the Organisation information.
 \section{Super classes}{
 \code{\link[reportesAPI:DBManager]{reportesAPI::DBManager}} -> \code{\link[reportesAPI:User]{reportesAPI::User}} -> \code{Organisation}
 }
-\section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
+\section{Active bindings}{
+\if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
 \item{\code{orgs}}{List containing the organisation affiliations of the User}
 

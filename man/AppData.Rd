@@ -45,6 +45,7 @@ R6 class that allows to get the information needed for an User session of the ap
 <li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Task" data-id="task_add"><a href='../../reportesAPI/html/Task.html#method-Task-task_add'><code>reportesAPI::Task$task_add()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Task" data-id="task_delete"><a href='../../reportesAPI/html/Task.html#method-Task-task_delete'><code>reportesAPI::Task$task_delete()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Task" data-id="task_edit_metadata"><a href='../../reportesAPI/html/Task.html#method-Task-task_edit_metadata'><code>reportesAPI::Task$task_edit_metadata()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Task" data-id="task_get_history"><a href='../../reportesAPI/html/Task.html#method-Task-task_get_history'><code>reportesAPI::Task$task_get_history()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Task" data-id="task_report_progress"><a href='../../reportesAPI/html/Task.html#method-Task-task_report_progress'><code>reportesAPI::Task$task_report_progress()</code></a></span></li>
 </ul>
 </details>
@@ -55,7 +56,7 @@ R6 class that allows to get the information needed for an User session of the ap
 \subsection{Method \code{new()}}{
 Start a session of app data based on an user email
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{AppData$new(email)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{AppData$new(email = Sys.getenv("REPORTES_EMAIL"))}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
