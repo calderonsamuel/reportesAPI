@@ -81,6 +81,7 @@ Get Group data"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
 <li><p><a href="#method-Task-task_report_progress"><code>Task$task_report_progress()</code></a></p></li>
 <li><p><a href="#method-Task-task_edit_metadata"><code>Task$task_edit_metadata()</code></a></p></li>
 <li><p><a href="#method-Task-progress_add"><code>Task$progress_add()</code></a></p></li>
+<li><p><a href="#method-Task-task_get_history"><code>Task$task_get_history()</code></a></p></li>
 <li><p><a href="#method-Task-clone"><code>Task$clone()</code></a></p></li>
 </ul></div><p><details><summary>Inherited methods</summary><ul><li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_execute_statement"><a href="DBManager.html#method-db_execute_statement"><code>reportesAPI::DBManager$db_execute_statement()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_get_query"><a href="DBManager.html#method-db_get_query"><code>reportesAPI::DBManager$db_get_query()</code></a></span></li>
@@ -370,15 +371,31 @@ Get Group data"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-Task-clone"></a><div class="section">
-<h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
-<p>The objects of this class are cloneable with this method.</p><div class="section">
+</div><p></p><hr><a id="method-Task-task_get_history"></a><div class="section">
+<h3 id="method-task-get-history-">Method <code>task_get_history()</code><a class="anchor" aria-label="anchor" href="#method-task-get-history-"></a></h3>
+<p>Get a task's progression history</p><div class="section">
 <h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Task</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Task</span><span class="op">$</span><span class="fu">task_get_history</span><span class="op">(</span><span class="va">task_id</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="arguments-6">Arguments<a class="anchor" aria-label="anchor" href="#arguments-6"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>task_id</code></dt>
+<dd><p>The id of the task on which the statement will be executed</p></dd>
+
+
+</dl><p></p></div>
+</div>
+
+</div><p></p><hr><a id="method-Task-clone"></a><div class="section">
+<h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
+<p>The objects of this class are cloneable with this method.</p><div class="section">
+<h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Task</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-7">Arguments<a class="anchor" aria-label="anchor" href="#arguments-7"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
 
