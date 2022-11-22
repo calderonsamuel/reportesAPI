@@ -195,7 +195,7 @@ Group <- R6::R6Class(
     active = list(
         #' @field groups List containing the group affiliations of the User
         groups = function() {
-            private$get_groups
+            private$get_groups()
         },
 
         #' @field group_users List containing the user list of the group The info is shown following the User's group role.
