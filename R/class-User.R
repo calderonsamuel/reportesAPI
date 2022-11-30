@@ -59,7 +59,7 @@ User <- R6::R6Class(
             fields <- list(
                 id = ids::random_id(),
                 email = email,
-                t_stamp = private$get_timestamp()
+                t_stamp = super$get_timestamp()
             )
             statement <- "
                 INSERT INTO users
