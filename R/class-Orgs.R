@@ -23,7 +23,7 @@ Organisation <- R6::R6Class(
             self$org_user_add(
                 org_id = org_id,
                 user_id = self$user$user_id,
-                role = "owner"
+                org_role = "owner"
             )
 
             cli::cli_alert_info("Initialized org '{org_id}'")
@@ -58,7 +58,7 @@ Organisation <- R6::R6Class(
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
-            cli::cli_alert_info("User '{user_id}' inserted into org '{org_id}' with role '{role}'")
+            cli::cli_alert_info("User '{user_id}' inserted into org '{org_id}' with role '{org_role}'")
         },
         #' @description Delete an user from an organisation
         org_user_delete = function(org_id, user_id) {

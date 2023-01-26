@@ -27,7 +27,7 @@ Group <- R6::R6Class(
                 org_id = org_id,
                 group_id = group_id,
                 user_id = self$user$user_id,
-                role = "ownr"
+                group_role = "ownr"
             ) |> suppressMessages()
 
             cli::cli_alert_info("Initialized group '{group_id}' in org '{org_id}' by user '{self$user$user_id}'")
@@ -65,7 +65,7 @@ Group <- R6::R6Class(
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
-            cli::cli_alert_info("User '{user_id}' inserted into group '{group_id}' in org '{org_id}' with role '{role}'")
+            cli::cli_alert_info("User '{user_id}' inserted into group '{group_id}' in org '{org_id}' with role '{group_role}'")
         },
         #' @description Delete an user from a group
         group_user_delete = function(org_id, group_id, user_id) {
