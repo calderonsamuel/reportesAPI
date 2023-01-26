@@ -1,4 +1,6 @@
-# reportesAPI (development version)
+# reportesAPI 0.1.5
+
+- Fixed a bug that prevented messaging when adding user to organisation or group
 
 # reportesAPI 0.1.4
 
