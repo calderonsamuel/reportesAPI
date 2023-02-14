@@ -128,14 +128,19 @@ Organisation <- R6::R6Class(
         get_org_users = function() {
             query <-
                 "SELECT
-                    rhs.*
+                    rhs.*,
+                    rhs2.name, rhs2.last_name
                 FROM (
                     SELECT org_id
                     FROM org_users
                     WHERE user_id = {self$user$user_id}
                 ) lhs
                 LEFT JOIN org_users rhs ON
-                lhs.org_id = rhs.org_id"
+                    lhs.org_id = rhs.org_id
+                LEFT JOIN users rhs2 ON
+                    rhs.user_id = rhs2.user_id
+                ORDER BY rhs.org_role
+                "
 
             db_data <- super$db_get_query(query)
 
