@@ -50,7 +50,7 @@ Group <- R6::R6Class(
             cli::cli_alert_info("Edited group '{group_id}' from org '{org_id}'")
         },
         #' @description Add an user to a group
-        group_user_add = function(org_id, group_id, user_id, group_role = "user") {
+        group_user_add = function(org_id, group_id, user_id, user_color = "white", group_role = "user") {
             t_stamp <- super$get_timestamp()
             statement <-
                 "INSERT INTO group_users
@@ -58,7 +58,7 @@ Group <- R6::R6Class(
                     org_id = {org_id},
                     group_id = {group_id},
                     user_id = {user_id},
-                    user_color = 'white',
+                    user_color = {user_color},
                     group_role = {group_role},
                     time_creation = {t_stamp},
                     time_last_modified = {t_stamp}"
