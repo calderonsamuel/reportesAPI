@@ -1,3 +1,7 @@
+# reportesAPI 0.1.7
+
+- Now you can specify the user color when adding to a group
+
 # reportesAPI 0.1.6
 
 - Fixed a bug that prevented to get org users names
