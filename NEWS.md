@@ -1,3 +1,7 @@
+# reportesAPI 0.1.6
+
+- Fixed a bug that prevented to get org users names
+
 # reportesAPI 0.1.5
 
 - Fixed a bug that prevented messaging when adding user to organisation or group
