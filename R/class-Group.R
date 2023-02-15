@@ -6,6 +6,7 @@
 #' @param org_id The id of the organisation on which the statement will be executed
 #' @param group_id The id of the group on which the statement will be executed
 #' @param user_id The id of the user on which the statement will be executed
+#' @param user_color The color of the user's cards
 #' @param group_title The new title of the group
 #' @param group_description The new description of the group
 #' @param group_role The role for the user in the group
@@ -13,15 +14,31 @@ Group <- R6::R6Class(
     classname = "Group",
     inherit = Organisation,
     public = list(
+        #' @field group_selected ID of the group to be used in the board, by default is the favorite group in group_users
+        group_selected = NULL,
 
         #' @description Start a Group based on an user email
-        initialize = function(email) {
+        initialize = function(email = Sys.getenv("REPORTES_EMAIL")) {
             super$initialize(email)
+            
+            favorite_group <- super$db_get_query(
+                "SELECT group_id 
+                FROM group_users 
+                WHERE 
+                    user_id = {self$user$user_id} AND
+                    favorite_group IS TRUE")
+            
+            if (length(favorite_group$group_id) == 1) {
+                self$group_selected <- favorite_group$group_id
+            } else {
+                self$group_selected <- self$groups[[1]]$group_id
+            }
+            
+            
         },
         #' @description Initialize a group for a new user
         group_initialize = function(org_id) {
             group_id <- private$group_create(org_id)
-
 
             self$group_user_add(
                 org_id = org_id,
@@ -109,6 +126,10 @@ Group <- R6::R6Class(
             private$group_delete(org_id, group_id)
 
             cli::cli_alert_info("Finalized group '{group_id}' in org '{org_id}'")
+        },
+        #' @description Select a group for use in the board
+        group_select = function(group_id) {
+            self$group_selected <- group_id
         }
     ),
     private = list(
