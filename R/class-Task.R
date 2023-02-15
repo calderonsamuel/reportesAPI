@@ -256,8 +256,8 @@ Task <- R6::R6Class(
             query_tasks <- super$db_make_query(
                 "SELECT *
                 FROM tasks
-                WHERE org_id IN ({orgs*}) AND
-                    group_id IN ({groups*}) AND
+                WHERE 
+                    group_id = {group_id} AND
                     assignee IN ({assignees*}) AND
                         (status_current != 'Terminado' OR (
                             status_current = 'Terminado' AND
@@ -265,8 +265,7 @@ Task <- R6::R6Class(
                             )
                         )
                 ",
-                orgs = names(self$orgs),
-                groups = names(self$groups),
+                group_id = self$group_selected,
                 assignees = private$get_assignees()
             )
 
@@ -301,20 +300,14 @@ Task <- R6::R6Class(
             }
         },
         get_assignees = function() {
-            groups_where_admin <- self$groups |>
-                purrr::keep(~.x$group_role == "admin") |>
-                names()
-
-            users_where_admin <- character()
-
-            if (length(groups_where_admin) > 0) {
-                users_where_admin <- self$group_users[groups_where_admin] |>
-                    purrr::map(~purrr::map_chr(.x, "user_id")) |>
-                    purrr::reduce(union)
+            current_group <- self$group_users[[self$group_selected]]
+            is_admin <- current_group[[self$user$user_id]][["group_role"]] == "admin"
+            
+            if (is_admin) {
+                purrr::map_chr(current_group, "user_id")
+            } else {
+                self$user$user_id
             }
-
-
-            union(users_where_admin, self$user$user_id)
         }
     ),
     active = list(
