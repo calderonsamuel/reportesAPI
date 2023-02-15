@@ -1,3 +1,8 @@
+# reportesAPI 0.1.8
+
+- The user that creates a group now has 'admin' role instead of 'owner'. This was making necessary to edit manually the user role after.
+- Users now have a favorite group. This is the default group for getting the tasks.
+
 # reportesAPI 0.1.7
 
 - Now you can specify the user color when adding to a group
