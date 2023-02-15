@@ -99,10 +99,12 @@ Group <- R6::R6Class(
         },
 
         #' @description Edit the role of a user inside a group and related information
-        group_user_edit = function(org_id, group_id, user_id, group_role) {
+        group_user_edit = function(org_id, group_id, user_id, user_color, group_role) {
+            
             statement <-
                 "UPDATE group_users
                 SET
+                    user_color = {user_color},
                     group_role = {group_role}
                 WHERE
                     org_id = {org_id} AND
@@ -111,7 +113,7 @@ Group <- R6::R6Class(
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
-            cli::cli_alert_info("User '{user_id}' now has role '{group_role}' in group '{group_id} in org '{org_id}'")
+            cli::cli_alert_info("User '{user_id}' now has role '{group_role}' and color '{user_color}' in group '{group_id}'")
         },
         #' @description Remove the existence of an organisation
         group_finalize = function(org_id, group_id) {
