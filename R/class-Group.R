@@ -27,7 +27,7 @@ Group <- R6::R6Class(
                 org_id = org_id,
                 group_id = group_id,
                 user_id = self$user$user_id,
-                group_role = "ownr"
+                group_role = "admin"
             ) |> suppressMessages()
 
             cli::cli_alert_info("Initialized group '{group_id}' in org '{org_id}' by user '{self$user$user_id}'")
