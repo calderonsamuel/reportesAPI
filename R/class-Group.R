@@ -146,7 +146,7 @@ Group <- R6::R6Class(
         #' @description Add a measurement unit for a group
         group_unit_add = function(unit_title, unit_description = "", unit_type, unit_icon = 'file') {
             unit_id <- ids::random_id()
-            type <- match.arg(type, c("report", "task"))
+            unit_type <- match.arg(unit_type, c("report", "task"))
             
             statement <- "
                 INSERT INTO units
@@ -167,7 +167,7 @@ Group <- R6::R6Class(
         
         #' @description Edit a measurement unit from a group
         group_unit_edit = function(unit_id, unit_title, unit_description, unit_type, unit_icon) {
-            type <- match.arg(type, c("report", "task"))
+            unit_type <- match.arg(unit_type, c("report", "task"))
             
             statement <- "
                 UPDATE units
