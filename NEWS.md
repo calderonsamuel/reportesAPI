@@ -1,3 +1,7 @@
+# reportesAPI 0.2.0
+
+- Added methos to `Group` to add, edit and delete measurement units. This also allows to divide between tasks and reports.
+
 # reportesAPI 0.1.8
 
 - The user that creates a group now has 'admin' role instead of 'owner'. This was making necessary to edit manually the user role after.
