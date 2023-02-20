@@ -32,10 +32,10 @@ R6 class that allows to get the user information.
 \if{html}{\out{
 <details open><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_execute_statement"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_execute_statement'><code>reportesAPI::DBManager$db_execute_statement()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_get_query"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_get_query'><code>reportesAPI::DBManager$db_get_query()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_make_query"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_make_query'><code>reportesAPI::DBManager$db_make_query()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="get_timestamp"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-get_timestamp'><code>reportesAPI::DBManager$get_timestamp()</code></a></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_execute_statement"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_execute_statement'><code>reportesAPI::DBManager$db_execute_statement()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_get_query"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_get_query'><code>reportesAPI::DBManager$db_get_query()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_make_query"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_make_query'><code>reportesAPI::DBManager$db_make_query()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="get_timestamp"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-get_timestamp'><code>reportesAPI::DBManager$get_timestamp()</code></a></span></li>
 </ul>
 </details>
 }}

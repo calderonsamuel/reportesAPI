@@ -10,6 +10,11 @@
 #' @param group_title The new title of the group
 #' @param group_description The new description of the group
 #' @param group_role The role for the user in the group
+#' @param unit_id The id of a group's measurement unit
+#' @param unit_title The title of a group's measurement unit
+#' @param unit_description The description of a group's measurement unit
+#' @param unit_type The type of a group's measurement unit. One of ("report", "task")
+#' @param unit_icon The icon of a group's measurement unit. Should be the compatible with fontawesome::fa().
 Group <- R6::R6Class(
     classname = "Group",
     inherit = Organisation,
@@ -39,6 +44,8 @@ Group <- R6::R6Class(
         #' @description Initialize a group for a new user
         group_initialize = function(org_id) {
             group_id <- private$group_create(org_id)
+            
+            self$group_select(group_id)
 
             self$group_user_add(
                 org_id = org_id,
@@ -46,6 +53,8 @@ Group <- R6::R6Class(
                 user_id = self$user$user_id,
                 group_role = "admin"
             ) |> suppressMessages()
+            
+            private$group_add_default_units()
 
             cli::cli_alert_info("Initialized group '{group_id}' in org '{org_id}' by user '{self$user$user_id}'")
         },
@@ -134,7 +143,8 @@ Group <- R6::R6Class(
             self$group_selected <- group_id
         },
         
-        group_unit_add = function(title, description = "", type, icon = 'file') {
+        #' @description Add a measurement unit for a group
+        group_unit_add = function(unit_title, unit_description = "", unit_type, unit_icon = 'file') {
             unit_id <- ids::random_id()
             type <- match.arg(type, c("report", "task"))
             
@@ -143,10 +153,10 @@ Group <- R6::R6Class(
                 SET
                     group_id = {self$group_selected},
                     unit_id = {unit_id},
-                    unit_title = {title},
-                    unit_description = {description},
-                    type = {type},
-                    icon = {icon},
+                    unit_title = {unit_title},
+                    unit_description = {unit_description},
+                    type = {unit_type},
+                    icon = {unit_icon},
                     creator = {self$user$user_id},
                     last_modified_by = {self$user$user_id}
             "
@@ -155,16 +165,17 @@ Group <- R6::R6Class(
             cli::cli_alert_info("Inserted unit '{unit_id}' into group '{self$group_selected}'")
         },
         
-        group_unit_edit = function(unit_id, title, description, type, icon) {
+        #' @description Edit a measurement unit from a group
+        group_unit_edit = function(unit_id, unit_title, unit_description, unit_type, unit_icon) {
             type <- match.arg(type, c("report", "task"))
             
             statement <- "
                 UPDATE units
                 SET 
-                    unit_title = {title},
-                    unit_description = {description},
-                    type = {type},
-                    icon = {icon},
+                    unit_title = {unit_title},
+                    unit_description = {unit_description},
+                    type = {unit_type},
+                    icon = {unit_icon},
                     last_modified_by = {self$user$user_id}
                 WHERE
                     unit_id = {unit_id}
@@ -174,6 +185,7 @@ Group <- R6::R6Class(
             cli::cli_alert_info("Edited unit '{unit_id}' from '{self$group_selected}'")
         },
         
+        #' @description Delete a measurement unit from a group
         group_unit_delete = function(unit_id) {
             super$db_execute_statement(
                 "DELETE FROM units
@@ -262,6 +274,42 @@ Group <- R6::R6Class(
                     group_id = {group_id}"
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
+        },
+        group_add_default_units = function() {
+            defaults <- c("Informe", "Proyecto de informe", "Proyecto de oficio", 
+                          "Proyecto de memorando", "Ayuda memoria", "PPT", 
+                          "Entregable", "Correo")
+            
+            data <- data.frame(
+                group_id = self$group_selected,
+                unit_id = random_id(n = length(defaults)),
+                unit_title = defaults,
+                unit_description = "",
+                type = "task",
+                icon = "file",
+                creator = self$user$user_id,
+                last_modified_by = self$user$user_id
+            ) |> 
+                transform(
+                    value = glue::glue_sql(
+                        "({group_id}, {unit_id}, {unit_title}, {unit_description}, 
+                        {type}, {icon}, {creator}, {last_modified_by})",
+                        .con = private$con
+                    )
+                )
+            
+            values <- glue::glue_sql_collapse(data$value, sep = ",\n")
+            
+            statement <- "
+                INSERT INTO 
+                    units(group_id, unit_id, unit_title, unit_description,
+                    type, icon, creator, last_modified_by)
+                VALUES
+                    {values}                    
+            "
+            super$db_execute_statement(statement, .envir = rlang::current_env())
+            
+            cli::cli_alert_info("Inserted default measurement units into group '{self$group_selected}'")
         }
     ),
     active = list(
@@ -275,9 +323,9 @@ Group <- R6::R6Class(
             private$get_group_users()
         },
         
-        #' @field group_units List containing the user list of the group The info is shown following the User's group role.
+        #' @field group_units List containing the group's measurement units. Older units are shown first.
         group_units = function() {
-            super$db_get_query("
+            data <- super$db_get_query("
                 SELECT 
                     lhs.* ,
                     rhs1.name AS creator_name,
@@ -295,6 +343,10 @@ Group <- R6::R6Class(
                     lhs.last_modified_by = rhs2.user_id
                 ORDER BY time_creation
             ", .envir = rlang::current_env())
+            
+            data |> 
+                purrr::pmap(list) |> 
+                setNames(data$unit_id)
         }
     )
 )

@@ -27,6 +27,8 @@ R6 class that allows to get the Group information.
 \item{\code{groups}}{List containing the group affiliations of the User}
 
 \item{\code{group_users}}{List containing the user list of the group The info is shown following the User's group role.}
+
+\item{\code{group_units}}{List containing the group's measurement units. Older units are shown first.}
 }
 \if{html}{\out{</div>}}
 }
@@ -41,23 +43,26 @@ R6 class that allows to get the Group information.
 \item \href{#method-Group-group_user_edit}{\code{Group$group_user_edit()}}
 \item \href{#method-Group-group_finalize}{\code{Group$group_finalize()}}
 \item \href{#method-Group-group_select}{\code{Group$group_select()}}
+\item \href{#method-Group-group_unit_add}{\code{Group$group_unit_add()}}
+\item \href{#method-Group-group_unit_edit}{\code{Group$group_unit_edit()}}
+\item \href{#method-Group-group_unit_delete}{\code{Group$group_unit_delete()}}
 \item \href{#method-Group-clone}{\code{Group$clone()}}
 }
 }
 \if{html}{\out{
 <details><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_execute_statement"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_execute_statement'><code>reportesAPI::DBManager$db_execute_statement()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_get_query"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_get_query'><code>reportesAPI::DBManager$db_get_query()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_make_query"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_make_query'><code>reportesAPI::DBManager$db_make_query()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="get_timestamp"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-get_timestamp'><code>reportesAPI::DBManager$get_timestamp()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="User" data-id="user_edit_names"><a href='../../reportesAPI/html/User.html#method-User-user_edit_names'><code>reportesAPI::User$user_edit_names()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_edit"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_edit'><code>reportesAPI::Organisation$org_edit()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_finalize"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_finalize'><code>reportesAPI::Organisation$org_finalize()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_initialize"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_initialize'><code>reportesAPI::Organisation$org_initialize()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_user_add"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_user_add'><code>reportesAPI::Organisation$org_user_add()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_user_delete"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_user_delete'><code>reportesAPI::Organisation$org_user_delete()</code></a></li>
-<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_user_edit"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_user_edit'><code>reportesAPI::Organisation$org_user_edit()</code></a></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_execute_statement"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_execute_statement'><code>reportesAPI::DBManager$db_execute_statement()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_get_query"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_get_query'><code>reportesAPI::DBManager$db_get_query()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="db_make_query"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-db_make_query'><code>reportesAPI::DBManager$db_make_query()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="DBManager" data-id="get_timestamp"><a href='../../reportesAPI/html/DBManager.html#method-DBManager-get_timestamp'><code>reportesAPI::DBManager$get_timestamp()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="User" data-id="user_edit_names"><a href='../../reportesAPI/html/User.html#method-User-user_edit_names'><code>reportesAPI::User$user_edit_names()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_edit"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_edit'><code>reportesAPI::Organisation$org_edit()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_finalize"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_finalize'><code>reportesAPI::Organisation$org_finalize()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_initialize"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_initialize'><code>reportesAPI::Organisation$org_initialize()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_user_add"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_user_add'><code>reportesAPI::Organisation$org_user_add()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_user_delete"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_user_delete'><code>reportesAPI::Organisation$org_user_delete()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="reportesAPI" data-topic="Organisation" data-id="org_user_edit"><a href='../../reportesAPI/html/Organisation.html#method-Organisation-org_user_edit'><code>reportesAPI::Organisation$org_user_edit()</code></a></span></li>
 </ul>
 </details>
 }}
@@ -176,7 +181,7 @@ Delete an user from a group
 \subsection{Method \code{group_user_edit()}}{
 Edit the role of a user inside a group and related information
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Group$group_user_edit(org_id, group_id, user_id, group_role)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Group$group_user_edit(org_id, group_id, user_id, user_color, group_role)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -187,6 +192,8 @@ Edit the role of a user inside a group and related information
 \item{\code{group_id}}{The id of the group on which the statement will be executed}
 
 \item{\code{user_id}}{The id of the user on which the statement will be executed}
+
+\item{\code{user_color}}{The color of the user's cards}
 
 \item{\code{group_role}}{The role for the user in the group}
 }
@@ -225,6 +232,82 @@ Select a group for use in the board
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{group_id}}{The id of the group on which the statement will be executed}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Group-group_unit_add"></a>}}
+\if{latex}{\out{\hypertarget{method-Group-group_unit_add}{}}}
+\subsection{Method \code{group_unit_add()}}{
+Add a measurement unit for a group
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Group$group_unit_add(
+  unit_title,
+  unit_description = "",
+  unit_type,
+  unit_icon = "file"
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{unit_title}}{The title of a group's measurement unit}
+
+\item{\code{unit_description}}{The description of a group's measurement unit}
+
+\item{\code{unit_type}}{The type of a group's measurement unit. One of ("report", "task")}
+
+\item{\code{unit_icon}}{The icon of a group's measurement unit. Should be the compatible with fontawesome::fa().}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Group-group_unit_edit"></a>}}
+\if{latex}{\out{\hypertarget{method-Group-group_unit_edit}{}}}
+\subsection{Method \code{group_unit_edit()}}{
+Edit a measurement unit from a group
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Group$group_unit_edit(
+  unit_id,
+  unit_title,
+  unit_description,
+  unit_type,
+  unit_icon
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{unit_id}}{The id of a group's measurement unit}
+
+\item{\code{unit_title}}{The title of a group's measurement unit}
+
+\item{\code{unit_description}}{The description of a group's measurement unit}
+
+\item{\code{unit_type}}{The type of a group's measurement unit. One of ("report", "task")}
+
+\item{\code{unit_icon}}{The icon of a group's measurement unit. Should be the compatible with fontawesome::fa().}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Group-group_unit_delete"></a>}}
+\if{latex}{\out{\hypertarget{method-Group-group_unit_delete}{}}}
+\subsection{Method \code{group_unit_delete()}}{
+Delete a measurement unit from a group
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Group$group_unit_delete(unit_id)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{unit_id}}{The id of a group's measurement unit}
 }
 \if{html}{\out{</div>}}
 }
