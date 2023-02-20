@@ -1,6 +1,6 @@
 # reportesAPI 0.2.0
 
-- Added methos to `Group` to add, edit and delete measurement units. This also allows to divide between tasks and reports.
+- Added methods to `Group` to add, edit and delete measurement units. This also allows to divide between tasks and reports.
 
 # reportesAPI 0.1.8
 
