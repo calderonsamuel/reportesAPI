@@ -1,3 +1,7 @@
+# reportesAPI 0.2.1
+
+- Fixed a bug that prevented to add and edit group units
+
 # reportesAPI 0.2.0
 
 - Added methods to `Group` to add, edit and delete measurement units. This also allows to divide between tasks and reports.
