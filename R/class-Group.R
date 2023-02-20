@@ -132,6 +132,37 @@ Group <- R6::R6Class(
         #' @description Select a group for use in the board
         group_select = function(group_id) {
             self$group_selected <- group_id
+        },
+        
+        group_unit_add = function(title, description = "", type, icon = 'file') {
+            unit_id <- ids::random_id()
+            type <- match.arg(type, c("report", "task"))
+            
+            statement <- "
+                INSERT INTO units
+                SET
+                    group_id = {self$group_selected},
+                    unit_id = {unit_id},
+                    unit_title = {title},
+                    unit_description = {description},
+                    type = {type},
+                    icon = {icon},
+                    creator = {self$user$user_id},
+                    last_modified_by = {self$user$user_id}
+            "
+            super$db_execute_statement(statement, .envir = rlang::current_env())
+            
+            cli::cli_alert_info("Inserted unit '{unit_id}' into group '{self$group_selected}'")
+        },
+        
+        group_unit_delete = function(unit_id) {
+            super$db_execute_statement(
+                "DELETE FROM units
+                WHERE unit_id = {unit_id}",
+                .envir = rlang::current_env()
+            )
+            
+            cli::cli_alert_info("Deleted unit '{unit_id}' from group '{self$group_selected}'")
         }
     ),
     private = list(
@@ -223,6 +254,28 @@ Group <- R6::R6Class(
         #' @field group_users List containing the user list of the group The info is shown following the User's group role.
         group_users = function() {
             private$get_group_users()
+        },
+        
+        #' @field group_units List containing the user list of the group The info is shown following the User's group role.
+        group_units = function() {
+            super$db_get_query("
+                SELECT 
+                    lhs.* ,
+                    rhs1.name AS creator_name,
+                    rhs1.last_name AS creator_last_name,
+                    rhs2.name AS last_modifier_name,
+                    rhs2.last_name AS last_modifier_last_name
+                FROM (
+                    SELECT * 
+                    FROM units 
+                    WHERE group_id = {self$group_selected}
+                ) lhs
+                LEFT JOIN users rhs1 ON
+                    lhs.creator = rhs1.user_id
+                LEFT JOIN users rhs2 ON
+                    lhs.last_modified_by = rhs2.user_id
+                ORDER BY time_creation
+            ", .envir = rlang::current_env())
         }
     )
 )
