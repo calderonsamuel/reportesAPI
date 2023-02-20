@@ -155,6 +155,25 @@ Group <- R6::R6Class(
             cli::cli_alert_info("Inserted unit '{unit_id}' into group '{self$group_selected}'")
         },
         
+        group_unit_edit = function(unit_id, title, description, type, icon) {
+            type <- match.arg(type, c("report", "task"))
+            
+            statement <- "
+                UPDATE units
+                SET 
+                    unit_title = {title},
+                    unit_description = {description},
+                    type = {type},
+                    icon = {icon},
+                    last_modified_by = {self$user$user_id}
+                WHERE
+                    unit_id = {unit_id}
+            "
+            super$db_execute_statement(statement, .envir = rlang::current_env())
+            
+            cli::cli_alert_info("Edited unit '{unit_id}' from '{self$group_selected}'")
+        },
+        
         group_unit_delete = function(unit_id) {
             super$db_execute_statement(
                 "DELETE FROM units
