@@ -25,6 +25,8 @@ R6 class that allows to get the user information.
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-User-new}{\code{User$new()}}
+\item \href{#method-User-user_add}{\code{User$user_add()}}
+\item \href{#method-User-user_delete}{\code{User$user_delete()}}
 \item \href{#method-User-user_edit_names}{\code{User$user_edit_names()}}
 \item \href{#method-User-clone}{\code{User$clone()}}
 }
@@ -56,17 +58,57 @@ Start User
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-User-user_edit_names"></a>}}
-\if{latex}{\out{\hypertarget{method-User-user_edit_names}{}}}
-\subsection{Method \code{user_edit_names()}}{
-Change the name and last name of the User
+\if{html}{\out{<a id="method-User-user_add"></a>}}
+\if{latex}{\out{\hypertarget{method-User-user_add}{}}}
+\subsection{Method \code{user_add()}}{
+Add a new user to the database
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{User$user_edit_names(name, last_name)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{User$user_add(name, last_name, email)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{name}}{Name to be inserted as user metadata.}
+
+\item{\code{last_name}}{Last name to be inserted as user metadata.}
+
+\item{\code{email}}{The email the user started the session with.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-User-user_delete"></a>}}
+\if{latex}{\out{\hypertarget{method-User-user_delete}{}}}
+\subsection{Method \code{user_delete()}}{
+Delete a user from the database
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{User$user_delete(user_id)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{user_id}}{ID of the user to edit or delete.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-User-user_edit_names"></a>}}
+\if{latex}{\out{\hypertarget{method-User-user_edit_names}{}}}
+\subsection{Method \code{user_edit_names()}}{
+Change the name and last name of the User
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{User$user_edit_names(user_id, name, last_name)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{user_id}}{ID of the user to edit or delete.}
+
 \item{\code{name}}{Name to be inserted as user metadata.}
 
 \item{\code{last_name}}{Last name to be inserted as user metadata.}
