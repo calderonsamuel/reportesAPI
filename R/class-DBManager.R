@@ -63,8 +63,8 @@ DBManager <- R6::R6Class(
             )
         },
         finalize = function() {
-            cli::cli_alert_info("Ending DB connection")
             DBI::dbDisconnect(private$con)
+            if (interactive()) cli::cli_alert_info("Ending DB connection")
         }
     )
 )
