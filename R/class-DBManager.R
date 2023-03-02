@@ -19,7 +19,8 @@ DBManager <- R6::R6Class(
         initialize = function(use_tibble = TRUE) {
             private$con <-  private$db_connect()
             private$use_tibble <- use_tibble
-            cli::cli_alert_info("Connected to DB")
+            
+            if (interactive()) cli::cli_alert_info("Connected to DB")
         },
         #' @description Analog to  `DBI::dbExecute()`
         db_execute_statement = function(...) {
