@@ -60,13 +60,11 @@ Group <- R6::R6Class(
         },
         #' @description Edit group metadata
         group_edit = function(org_id, group_id, group_title, group_description) {
-            t_stamp <- super$get_timestamp()
             statement <-
                 "UPDATE groups
                 SET
                     group_title = {group_title},
-                    group_description = {group_description},
-                    time_last_modified = {t_stamp}
+                    group_description = {group_description}
                 WHERE
                     org_id = {org_id} AND
                     group_id = {group_id}"
@@ -77,7 +75,6 @@ Group <- R6::R6Class(
         },
         #' @description Add an user to a group
         group_user_add = function(org_id, group_id, user_id, user_color = "white", group_role = "user") {
-            t_stamp <- super$get_timestamp()
             statement <-
                 "INSERT INTO group_users
                 SET
@@ -85,9 +82,7 @@ Group <- R6::R6Class(
                     group_id = {group_id},
                     user_id = {user_id},
                     user_color = {user_color},
-                    group_role = {group_role},
-                    time_creation = {t_stamp},
-                    time_last_modified = {t_stamp}"
+                    group_role = {group_role}"
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
@@ -250,7 +245,6 @@ Group <- R6::R6Class(
         },
         group_create = function(org_id, parent_group = "organisation") {
             group_id <- ids::random_id()
-            t_stamp <- super$get_timestamp()
 
             statement <-
                 "INSERT INTO groups
@@ -259,9 +253,7 @@ Group <- R6::R6Class(
                     group_id = {group_id},
                     group_title = 'Sin nombre',
                     group_description = '',
-                    parent_group = {parent_group},
-                    time_creation = {t_stamp},
-                    time_last_modified = {t_stamp}"
+                    parent_group = {parent_group}"
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
             return(group_id)

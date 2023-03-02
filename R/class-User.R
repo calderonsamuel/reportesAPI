@@ -20,13 +20,11 @@ User <- R6::R6Class(
         },
         #' @description Change the name and last name of the User
         user_edit_names = function(name, last_name) {
-            t_stamp <- super$get_timestamp()
             statement <-
                 "UPDATE users
                 SET
                     name = {name},
-                    last_name = {last_name},
-                    time_last_modified = {t_stamp}
+                    last_name = {last_name}
                 WHERE
                     user_id = {self$user$user_id}"
             super$db_execute_statement(statement, .envir = rlang::current_env())
@@ -58,8 +56,7 @@ User <- R6::R6Class(
         user_create = function(email) {
             fields <- list(
                 id = ids::random_id(),
-                email = email,
-                t_stamp = super$get_timestamp()
+                email = email
             )
             statement <- "
                 INSERT INTO users
@@ -67,9 +64,7 @@ User <- R6::R6Class(
                     user_id = {id},
                     name = '',
                     last_name = '',
-                    email = {email},
-                    time_creation = {t_stamp},
-                    time_last_modified = {t_stamp}"
+                    email = {email}"
             super$db_execute_statement(statement, .envir = fields)
         },
         user_delete = function(user_id) {

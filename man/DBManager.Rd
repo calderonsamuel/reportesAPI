@@ -18,7 +18,6 @@ Una base de datos puede ejecutar y obtener querys
 \item \href{#method-DBManager-db_execute_statement}{\code{DBManager$db_execute_statement()}}
 \item \href{#method-DBManager-db_get_query}{\code{DBManager$db_get_query()}}
 \item \href{#method-DBManager-db_make_query}{\code{DBManager$db_make_query()}}
-\item \href{#method-DBManager-get_timestamp}{\code{DBManager$get_timestamp()}}
 \item \href{#method-DBManager-clone}{\code{DBManager$clone()}}
 }
 }
@@ -86,23 +85,6 @@ Construct the query to be passed to \code{DBI::dbGetQuery()}. Useful for debuggi
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{...}}{Objects passed to glue::glue_sql() with the exception of the \code{.con} argument.}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-DBManager-get_timestamp"></a>}}
-\if{latex}{\out{\hypertarget{method-DBManager-get_timestamp}{}}}
-\subsection{Method \code{get_timestamp()}}{
-Wrapper of \code{lubridate::now()}. Useful for timestamp insertions in inherited classes.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{DBManager$get_timestamp(tz = "America/Lima")}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{tz}}{Timezone to be passed to \code{lubridate::now()}}
 }
 \if{html}{\out{</div>}}
 }

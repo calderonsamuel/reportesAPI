@@ -39,7 +39,6 @@ Task <- R6::R6Class(
             private$check_process(process_id, activity_id)
 
             task_id <- ids::random_id()
-            t_stamp <- super$get_timestamp()
 
             statement <-
                 "INSERT INTO tasks
@@ -57,9 +56,7 @@ Task <- R6::R6Class(
                     output_unit = {output_unit},
                     output_goal = {output_goal},
                     output_current = 0,
-                    status_current = 'Pendiente',
-                    time_creation = {t_stamp},
-                    time_last_modified = {t_stamp}
+                    status_current = 'Pendiente'
                 "
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
@@ -122,14 +119,11 @@ Task <- R6::R6Class(
 
             private$check_process(process_id, activity_id)
 
-            t_stamp <- super$get_timestamp()
-
             statement <-
                 "UPDATE tasks
                 SET
                     status_current = {status_current},
-                    output_current = {output_current},
-                    time_last_modified = {t_stamp}
+                    output_current = {output_current}
                 WHERE
                     org_id = {org_id} AND
                     group_id = {group_id} AND
@@ -165,14 +159,11 @@ Task <- R6::R6Class(
                                       task_title, task_description) {
             private$check_process(process_id, activity_id)
 
-            t_stamp <- super$get_timestamp()
-
             statement <-
                 "UPDATE tasks
                 SET
                     task_title = {task_title},
-                    task_description = {task_description},
-                    time_last_modified = {t_stamp}
+                    task_description = {task_description}
                 WHERE
                     org_id = {org_id} AND
                     group_id = {group_id} AND
@@ -207,8 +198,6 @@ Task <- R6::R6Class(
                                 output_progress, status, details) {
             private$check_process(process_id, activity_id)
 
-            t_stamp <- super$get_timestamp()
-
             statement <-
                 "INSERT INTO progress
                 SET
@@ -220,7 +209,6 @@ Task <- R6::R6Class(
                     reported_by = {self$user$user_id},
                     output_progress = {output_progress},
                     status = {status},
-                    time_reported = {t_stamp},
                     details = {details}"
 
             super$db_execute_statement(statement, .envir = rlang::current_env())

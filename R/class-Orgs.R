@@ -30,13 +30,11 @@ Organisation <- R6::R6Class(
         },
         #' @description Edit Organisation metadata
         org_edit = function(org_id, org_title, org_description) {
-            t_stamp <- super$get_timestamp()
             statement <-
                 "UPDATE organisations
                 SET
                     org_title = {org_title},
-                    org_description = {org_description},
-                    time_last_modified = {t_stamp}
+                    org_description = {org_description}
                 WHERE
                     org_id = {org_id}"
 
@@ -46,15 +44,12 @@ Organisation <- R6::R6Class(
         },
         #' @description Add an user to an organisation
         org_user_add = function(org_id, user_id, org_role) {
-            t_stamp <- super$get_timestamp()
             statement <-
                 "INSERT INTO org_users
                 SET
                     org_id = {org_id},
                     user_id = {user_id},
-                    org_role = {org_role},
-                    time_creation = {t_stamp},
-                    time_last_modified = {t_stamp}"
+                    org_role = {org_role}"
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
@@ -154,16 +149,13 @@ Organisation <- R6::R6Class(
         },
         org_create = function() {
             id <- ids::random_id()
-            t_stamp <- super$get_timestamp()
 
             statement <-
                 "INSERT INTO organisations
                 SET
                     org_id = {id},
                     org_title = 'Organizacion sin nombre',
-                    org_description = '',
-                    time_creation = {t_stamp},
-                    time_last_modified = {t_stamp}"
+                    org_description = ''"
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
             return(id)

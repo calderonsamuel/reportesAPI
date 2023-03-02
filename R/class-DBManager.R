@@ -3,7 +3,6 @@
 #' Una base de datos puede ejecutar y obtener querys
 #'
 #' @param use_tibble Whether print the results of DbGetQuery() as a tibble or not. Default TRUE
-#' @param tz Timezone to be passed to `lubridate::now()`
 #' @param ... Objects passed to glue::glue_sql() with the exception of the `.con` argument.
 #' @export
 #' @importFrom DBI dbConnect dbExecute dbGetQuery dbDisconnect
@@ -48,10 +47,6 @@ DBManager <- R6::R6Class(
             dots[[".con"]] <- private$con
 
             do.call(what = glue::glue_sql, args = dots)
-        },
-        #' @description Wrapper of `lubridate::now()`. Useful for timestamp insertions in inherited classes.
-        get_timestamp = function(tz = "America/Lima") {
-            lubridate::now(tz)
         }
     ),
     private = list(
