@@ -1,4 +1,19 @@
-# reportesAPI (development version)
+# reportesAPI 0.3.0
+
+##  Big changes in the underlying database. 
+
+- Now all the tables have primary and foreign keys. the 'users' and the 'organisations' tables are the root of the database. (fix #9)
+- Deletion of tasks cascades to progresses.
+- Deletion of groups cascades to tasks, group_users, and group_units.
+- Deletion of organisation cascades to groups and org_users
+- Deletion of users is restricted.
+- No longer use foreign keys to retrieve or update data in child tables.
+- Adding or updating a task no longer creates an entry in progress.
+
+## Other changes
+
+- Each class now has various test for add, update and delete.
+- Changes in the database now only produce messages in interactive sessions.
 
 # reportesAPI 0.2.1
 
