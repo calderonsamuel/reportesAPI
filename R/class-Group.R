@@ -207,7 +207,7 @@ Group <- R6::R6Class(
 
             query <-
                 "SELECT
-                    lhs.group_id, lhs.group_role,
+                    rhs.org_id, lhs.group_id, lhs.group_role,
                     rhs.group_title, rhs.group_description,
                     rhs.parent_group, rhs.time_creation, rhs.time_last_modified
                 FROM (

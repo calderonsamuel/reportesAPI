@@ -36,6 +36,11 @@ test_that("Group data can be retrieved", {
     expect_named(test_group$groups)
 })
 
+test_that("Group data includes org_id", {
+    test_group <- Group$new(email = Sys.getenv("REPORTES_EMAIL"))
+    expect_type(test_group$groups[[1]]$org_id, "character")
+})
+
 test_that("Group users data can be retrieved", {
     test_group <- Group$new(email = Sys.getenv("REPORTES_EMAIL"))
     
