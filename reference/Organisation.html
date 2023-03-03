@@ -81,6 +81,8 @@ Get Organisation data"><!-- mathjax --><script src="https://cdnjs.cloudflare.com
 
 <ul><li><p><a href="#method-Organisation-new"><code>Organisation$new()</code></a></p></li>
 <li><p><a href="#method-Organisation-org_initialize"><code>Organisation$org_initialize()</code></a></p></li>
+<li><p><a href="#method-Organisation-org_add"><code>Organisation$org_add()</code></a></p></li>
+<li><p><a href="#method-Organisation-org_delete"><code>Organisation$org_delete()</code></a></p></li>
 <li><p><a href="#method-Organisation-org_edit"><code>Organisation$org_edit()</code></a></p></li>
 <li><p><a href="#method-Organisation-org_user_add"><code>Organisation$org_user_add()</code></a></p></li>
 <li><p><a href="#method-Organisation-org_user_delete"><code>Organisation$org_user_delete()</code></a></p></li>
@@ -117,15 +119,51 @@ Get Organisation data"><!-- mathjax --><script src="https://cdnjs.cloudflare.com
 </div>
 
 
-</div><p></p><hr><a id="method-Organisation-org_edit"></a><div class="section">
-<h3 id="method-org-edit-">Method <code>org_edit()</code><a class="anchor" aria-label="anchor" href="#method-org-edit-"></a></h3>
-<p>Edit Organisation metadata</p><div class="section">
+</div><p></p><hr><a id="method-Organisation-org_add"></a><div class="section">
+<h3 id="method-org-add-">Method <code>org_add()</code><a class="anchor" aria-label="anchor" href="#method-org-add-"></a></h3>
+<p>Add a new organisation to the database</p><div class="section">
 <h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Organisation</span><span class="op">$</span><span class="fu">org_edit</span><span class="op">(</span><span class="va">org_id</span>, <span class="va">org_title</span>, <span class="va">org_description</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Organisation</span><span class="op">$</span><span class="fu">org_add</span><span class="op">(</span><span class="va">org_title</span>, <span class="va">org_description</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="arguments-1">Arguments<a class="anchor" aria-label="anchor" href="#arguments-1"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>org_title</code></dt>
+<dd><p>The new title of the organisation</p></dd>
+
+
+<dt><code>org_description</code></dt>
+<dd><p>The new description of the organisation</p></dd>
+
+
+</dl><p></p></div>
+</div>
+
+</div><p></p><hr><a id="method-Organisation-org_delete"></a><div class="section">
+<h3 id="method-org-delete-">Method <code>org_delete()</code><a class="anchor" aria-label="anchor" href="#method-org-delete-"></a></h3>
+<p>Delete an organisation from the database</p><div class="section">
+<h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Organisation</span><span class="op">$</span><span class="fu">org_delete</span><span class="op">(</span><span class="va">org_id</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>org_id</code></dt>
+<dd><p>The id of the organisation on which the statement will be executed</p></dd>
+
+
+</dl><p></p></div>
+</div>
+
+</div><p></p><hr><a id="method-Organisation-org_edit"></a><div class="section">
+<h3 id="method-org-edit-">Method <code>org_edit()</code><a class="anchor" aria-label="anchor" href="#method-org-edit-"></a></h3>
+<p>Edit Organisation metadata</p><div class="section">
+<h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Organisation</span><span class="op">$</span><span class="fu">org_edit</span><span class="op">(</span><span class="va">org_id</span>, <span class="va">org_title</span>, <span class="va">org_description</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-3">Arguments<a class="anchor" aria-label="anchor" href="#arguments-3"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>org_id</code></dt>
 <dd><p>The id of the organisation on which the statement will be executed</p></dd>
 
@@ -144,52 +182,8 @@ Get Organisation data"><!-- mathjax --><script src="https://cdnjs.cloudflare.com
 </div><p></p><hr><a id="method-Organisation-org_user_add"></a><div class="section">
 <h3 id="method-org-user-add-">Method <code>org_user_add()</code><a class="anchor" aria-label="anchor" href="#method-org-user-add-"></a></h3>
 <p>Add an user to an organisation</p><div class="section">
-<h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Organisation</span><span class="op">$</span><span class="fu">org_user_add</span><span class="op">(</span><span class="va">org_id</span>, <span class="va">user_id</span>, <span class="va">org_role</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
-<h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
-<p></p><div class="arguments"><dl><dt><code>org_id</code></dt>
-<dd><p>The id of the organisation on which the statement will be executed</p></dd>
-
-
-<dt><code>user_id</code></dt>
-<dd><p>The id of the user on which the statement will be executed</p></dd>
-
-
-<dt><code>org_role</code></dt>
-<dd><p>The role for the user in the organisation</p></dd>
-
-
-</dl><p></p></div>
-</div>
-
-</div><p></p><hr><a id="method-Organisation-org_user_delete"></a><div class="section">
-<h3 id="method-org-user-delete-">Method <code>org_user_delete()</code><a class="anchor" aria-label="anchor" href="#method-org-user-delete-"></a></h3>
-<p>Delete an user from an organisation</p><div class="section">
-<h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Organisation</span><span class="op">$</span><span class="fu">org_user_delete</span><span class="op">(</span><span class="va">org_id</span>, <span class="va">user_id</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
-<h4 id="arguments-3">Arguments<a class="anchor" aria-label="anchor" href="#arguments-3"></a></h4>
-<p></p><div class="arguments"><dl><dt><code>org_id</code></dt>
-<dd><p>The id of the organisation on which the statement will be executed</p></dd>
-
-
-<dt><code>user_id</code></dt>
-<dd><p>The id of the user on which the statement will be executed</p></dd>
-
-
-</dl><p></p></div>
-</div>
-
-</div><p></p><hr><a id="method-Organisation-org_user_edit"></a><div class="section">
-<h3 id="method-org-user-edit-">Method <code>org_user_edit()</code><a class="anchor" aria-label="anchor" href="#method-org-user-edit-"></a></h3>
-<p>Edit the role of a user inside an organisation</p><div class="section">
 <h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Organisation</span><span class="op">$</span><span class="fu">org_user_edit</span><span class="op">(</span><span class="va">org_id</span>, <span class="va">user_id</span>, <span class="va">org_role</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Organisation</span><span class="op">$</span><span class="fu">org_user_add</span><span class="op">(</span><span class="va">org_id</span>, <span class="va">user_id</span>, <span class="va">org_role</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -209,15 +203,59 @@ Get Organisation data"><!-- mathjax --><script src="https://cdnjs.cloudflare.com
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-Organisation-org_finalize"></a><div class="section">
-<h3 id="method-org-finalize-">Method <code>org_finalize()</code><a class="anchor" aria-label="anchor" href="#method-org-finalize-"></a></h3>
-<p>Remove the existence of an organisation</p><div class="section">
+</div><p></p><hr><a id="method-Organisation-org_user_delete"></a><div class="section">
+<h3 id="method-org-user-delete-">Method <code>org_user_delete()</code><a class="anchor" aria-label="anchor" href="#method-org-user-delete-"></a></h3>
+<p>Delete an user from an organisation</p><div class="section">
 <h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Organisation</span><span class="op">$</span><span class="fu">org_finalize</span><span class="op">(</span><span class="va">org_id</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Organisation</span><span class="op">$</span><span class="fu">org_user_delete</span><span class="op">(</span><span class="va">org_id</span>, <span class="va">user_id</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="arguments-5">Arguments<a class="anchor" aria-label="anchor" href="#arguments-5"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>org_id</code></dt>
+<dd><p>The id of the organisation on which the statement will be executed</p></dd>
+
+
+<dt><code>user_id</code></dt>
+<dd><p>The id of the user on which the statement will be executed</p></dd>
+
+
+</dl><p></p></div>
+</div>
+
+</div><p></p><hr><a id="method-Organisation-org_user_edit"></a><div class="section">
+<h3 id="method-org-user-edit-">Method <code>org_user_edit()</code><a class="anchor" aria-label="anchor" href="#method-org-user-edit-"></a></h3>
+<p>Edit the role of a user inside an organisation</p><div class="section">
+<h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Organisation</span><span class="op">$</span><span class="fu">org_user_edit</span><span class="op">(</span><span class="va">org_id</span>, <span class="va">user_id</span>, <span class="va">org_role</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-6">Arguments<a class="anchor" aria-label="anchor" href="#arguments-6"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>org_id</code></dt>
+<dd><p>The id of the organisation on which the statement will be executed</p></dd>
+
+
+<dt><code>user_id</code></dt>
+<dd><p>The id of the user on which the statement will be executed</p></dd>
+
+
+<dt><code>org_role</code></dt>
+<dd><p>The role for the user in the organisation</p></dd>
+
+
+</dl><p></p></div>
+</div>
+
+</div><p></p><hr><a id="method-Organisation-org_finalize"></a><div class="section">
+<h3 id="method-org-finalize-">Method <code>org_finalize()</code><a class="anchor" aria-label="anchor" href="#method-org-finalize-"></a></h3>
+<p>Remove the existence of an organisation</p><div class="section">
+<h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Organisation</span><span class="op">$</span><span class="fu">org_finalize</span><span class="op">(</span><span class="va">org_id</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-7">Arguments<a class="anchor" aria-label="anchor" href="#arguments-7"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>org_id</code></dt>
 <dd><p>The id of the organisation on which the statement will be executed</p></dd>
 
@@ -228,12 +266,12 @@ Get Organisation data"><!-- mathjax --><script src="https://cdnjs.cloudflare.com
 </div><p></p><hr><a id="method-Organisation-clone"></a><div class="section">
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
-<h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
+<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Organisation</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-6">Arguments<a class="anchor" aria-label="anchor" href="#arguments-6"></a></h4>
+<h4 id="arguments-8">Arguments<a class="anchor" aria-label="anchor" href="#arguments-8"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
 
