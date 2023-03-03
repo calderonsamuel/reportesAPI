@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">reportesAPI</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,22 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="reportesapi-development-version">reportesAPI (development version)<a class="anchor" aria-label="anchor" href="#reportesapi-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.3.0" id="reportesapi-030">reportesAPI 0.3.0<a class="anchor" aria-label="anchor" href="#reportesapi-030"></a></h2>
+<div class="section level3">
+<h3 id="big-changes-in-the-underlying-database-0-3-0">Big changes in the underlying database.<a class="anchor" aria-label="anchor" href="#big-changes-in-the-underlying-database-0-3-0"></a></h3>
+<ul><li>Now all the tables have primary and foreign keys. the ‘users’ and the ‘organisations’ tables are the root of the database. (fix <a href="https://github.com/calderonsamuel/reportesAPI/issues/9" class="external-link">#9</a>)</li>
+<li>Deletion of tasks cascades to progresses.</li>
+<li>Deletion of groups cascades to tasks, group_users, and group_units.</li>
+<li>Deletion of organisation cascades to groups and org_users</li>
+<li>Deletion of users is restricted.</li>
+<li>No longer use foreign keys to retrieve or update data in child tables.</li>
+<li>Adding or updating a task no longer creates an entry in progress.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="other-changes-0-3-0">Other changes<a class="anchor" aria-label="anchor" href="#other-changes-0-3-0"></a></h3>
+<ul><li>Each class now has various test for add, update and delete.</li>
+<li>Changes in the database now only produce messages in interactive sessions.</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.1" id="reportesapi-021">reportesAPI 0.2.1<a class="anchor" aria-label="anchor" href="#reportesapi-021"></a></h2>
