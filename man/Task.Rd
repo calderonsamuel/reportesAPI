@@ -86,12 +86,9 @@ Start a Task based on an user email
 \if{html}{\out{<a id="method-Task-task_add"></a>}}
 \if{latex}{\out{\hypertarget{method-Task-task_add}{}}}
 \subsection{Method \code{task_add()}}{
-Add a new task for an User
+Add a new task for an User and report it as initial progress.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Task$task_add(
-  process_id = NA_character_,
-  activity_id = NA_character_,
-  org_id,
   group_id,
   task_title,
   task_description,
@@ -105,12 +102,6 @@ Add a new task for an User
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{process_id}}{The id of the process the task belongs to. When used must be paired with activity_id}
-
-\item{\code{activity_id}}{The id of the activity the task belongs to. When used must be paired with process_id}
-
-\item{\code{org_id}}{The id of the organisation on which the statement will be executed}
-
 \item{\code{group_id}}{The id of the group on which the statement will be executed}
 
 \item{\code{task_title}}{The new title of the group}
@@ -134,26 +125,12 @@ Add a new task for an User
 \subsection{Method \code{task_delete()}}{
 Delete an user task
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Task$task_delete(
-  process_id = NA_character_,
-  activity_id = NA_character_,
-  org_id,
-  group_id,
-  task_id
-)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Task$task_delete(task_id)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{process_id}}{The id of the process the task belongs to. When used must be paired with activity_id}
-
-\item{\code{activity_id}}{The id of the activity the task belongs to. When used must be paired with process_id}
-
-\item{\code{org_id}}{The id of the organisation on which the statement will be executed}
-
-\item{\code{group_id}}{The id of the group on which the statement will be executed}
-
 \item{\code{task_id}}{The id of the task on which the statement will be executed}
 }
 \if{html}{\out{</div>}}
@@ -165,29 +142,12 @@ Delete an user task
 \subsection{Method \code{task_report_progress()}}{
 Report progress on an assigned task
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Task$task_report_progress(
-  process_id = NA_character_,
-  activity_id = NA_character_,
-  org_id,
-  group_id,
-  task_id,
-  status_current,
-  output_current,
-  details
-)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Task$task_report_progress(task_id, status_current, output_current, details)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{process_id}}{The id of the process the task belongs to. When used must be paired with activity_id}
-
-\item{\code{activity_id}}{The id of the activity the task belongs to. When used must be paired with process_id}
-
-\item{\code{org_id}}{The id of the organisation on which the statement will be executed}
-
-\item{\code{group_id}}{The id of the group on which the statement will be executed}
-
 \item{\code{task_id}}{The id of the task on which the statement will be executed}
 
 \item{\code{status_current}}{Current status of the specified task}
@@ -205,28 +165,12 @@ Report progress on an assigned task
 \subsection{Method \code{task_edit_metadata()}}{
 Edit a task metadata
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Task$task_edit_metadata(
-  process_id = NA_character_,
-  activity_id = NA_character_,
-  org_id,
-  group_id,
-  task_id,
-  task_title,
-  task_description
-)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Task$task_edit_metadata(task_id, task_title, task_description)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{process_id}}{The id of the process the task belongs to. When used must be paired with activity_id}
-
-\item{\code{activity_id}}{The id of the activity the task belongs to. When used must be paired with process_id}
-
-\item{\code{org_id}}{The id of the organisation on which the statement will be executed}
-
-\item{\code{group_id}}{The id of the group on which the statement will be executed}
-
 \item{\code{task_id}}{The id of the task on which the statement will be executed}
 
 \item{\code{task_title}}{The new title of the group}
@@ -242,29 +186,12 @@ Edit a task metadata
 \subsection{Method \code{progress_add()}}{
 Insert progress info on some task
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Task$progress_add(
-  process_id = NA_character_,
-  activity_id = NA_character_,
-  org_id,
-  group_id,
-  task_id,
-  output_progress,
-  status,
-  details
-)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Task$progress_add(task_id, output_progress, status, details)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{process_id}}{The id of the process the task belongs to. When used must be paired with activity_id}
-
-\item{\code{activity_id}}{The id of the activity the task belongs to. When used must be paired with process_id}
-
-\item{\code{org_id}}{The id of the organisation on which the statement will be executed}
-
-\item{\code{group_id}}{The id of the group on which the statement will be executed}
-
 \item{\code{task_id}}{The id of the task on which the statement will be executed}
 
 \item{\code{output_progress}}{Quantity of the progress being reported. Is measured in the unit specified in the creation of the task}
