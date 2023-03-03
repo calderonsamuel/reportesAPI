@@ -67,7 +67,6 @@ Clase R6 para manejar la base de datos"><!-- mathjax --><script src="https://cdn
 <li><p><a href="#method-DBManager-db_execute_statement"><code>DBManager$db_execute_statement()</code></a></p></li>
 <li><p><a href="#method-DBManager-db_get_query"><code>DBManager$db_get_query()</code></a></p></li>
 <li><p><a href="#method-DBManager-db_make_query"><code>DBManager$db_make_query()</code></a></p></li>
-<li><p><a href="#method-DBManager-get_timestamp"><code>DBManager$get_timestamp()</code></a></p></li>
 <li><p><a href="#method-DBManager-clone"><code>DBManager$clone()</code></a></p></li>
 </ul></div><p></p><hr><a id="method-DBManager-new"></a><div class="section">
 <h3 id="method-new-">Method <code>new()</code><a class="anchor" aria-label="anchor" href="#method-new-"></a></h3>
@@ -133,31 +132,15 @@ Clase R6 para manejar la base de datos"><!-- mathjax --><script src="https://cdn
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-DBManager-get_timestamp"></a><div class="section">
-<h3 id="method-get-timestamp-">Method <code>get_timestamp()</code><a class="anchor" aria-label="anchor" href="#method-get-timestamp-"></a></h3>
-<p>Wrapper of <code><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">lubridate::now()</a></code>. Useful for timestamp insertions in inherited classes.</p><div class="section">
-<h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">DBManager</span><span class="op">$</span><span class="fu">get_timestamp</span><span class="op">(</span>tz <span class="op">=</span> <span class="st">"America/Lima"</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-<div class="section">
-<h4 id="arguments-4">Arguments<a class="anchor" aria-label="anchor" href="#arguments-4"></a></h4>
-<p></p><div class="arguments"><dl><dt><code>tz</code></dt>
-<dd><p>Timezone to be passed to <code><a href="https://lubridate.tidyverse.org/reference/now.html" class="external-link">lubridate::now()</a></code></p></dd>
-
-
-</dl><p></p></div>
-</div>
-
 </div><p></p><hr><a id="method-DBManager-clone"></a><div class="section">
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
-<h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
+<h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">DBManager</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-5">Arguments<a class="anchor" aria-label="anchor" href="#arguments-5"></a></h4>
+<h4 id="arguments-4">Arguments<a class="anchor" aria-label="anchor" href="#arguments-4"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
 
