@@ -1,4 +1,7 @@
-# reportesAPI (development version)
+# reportesAPI 0.3.1
+
+- Fixed a bug that prevented successful retrieval of groups data
+- Fixed a bug in the database that prevented reporting more than once
 
 # reportesAPI 0.3.0
 
