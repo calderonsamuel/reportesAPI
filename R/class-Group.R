@@ -43,7 +43,7 @@ Group <- R6::R6Class(
         },
         #' @description Initialize a group for a new user
         group_initialize = function(org_id) {
-            group_id <- private$group_create(org_id)
+            group_id <- self$group_add(org_id, )
             
             self$group_select(group_id)
 
@@ -56,29 +56,55 @@ Group <- R6::R6Class(
             
             private$group_add_default_units()
 
-            cli::cli_alert_info("Initialized group '{group_id}' in org '{org_id}' by user '{self$user$user_id}'")
+            if (interactive()) cli::cli_alert_info("Initialized group '{group_id}' in org '{org_id}' by user '{self$user$user_id}'")
         },
+        
+        #' @description Add a group to the database
+        group_add = function(org_id, group_title, group_description) {
+            group_id <- ids::random_id()
+            
+            statement <-
+                "INSERT INTO groups
+                SET
+                    org_id = {org_id},
+                    group_id = {group_id},
+                    group_title = {group_title},
+                    group_description = {group_description},
+                    parent_group = 'organisation'"
+            super$db_execute_statement(statement, .envir = rlang::current_env())
+            
+            return(group_id)
+        },
+        
+        #' @description Remove a group from the database
+        group_delete = function(group_id) {
+            statement <-
+                "DELETE FROM groups
+                WHERE
+                    group_id = {group_id}"
+            
+            super$db_execute_statement(statement, .envir = rlang::current_env())
+        },
+        
         #' @description Edit group metadata
-        group_edit = function(org_id, group_id, group_title, group_description) {
+        group_edit = function(group_id, group_title, group_description) {
             statement <-
                 "UPDATE groups
                 SET
                     group_title = {group_title},
                     group_description = {group_description}
                 WHERE
-                    org_id = {org_id} AND
                     group_id = {group_id}"
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
-            cli::cli_alert_info("Edited group '{group_id}' from org '{org_id}'")
+            if (interactive()) cli::cli_alert_info("Edited group '{group_id}'")
         },
         #' @description Add an user to a group
-        group_user_add = function(org_id, group_id, user_id, user_color = "white", group_role = "user") {
+        group_user_add = function(group_id, user_id, user_color = "white", group_role = "user") {
             statement <-
                 "INSERT INTO group_users
                 SET
-                    org_id = {org_id},
                     group_id = {group_id},
                     user_id = {user_id},
                     user_color = {user_color},
@@ -86,24 +112,23 @@ Group <- R6::R6Class(
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
-            cli::cli_alert_info("User '{user_id}' inserted into group '{group_id}' in org '{org_id}' with role '{group_role}'")
+            if (interactive()) cli::cli_alert_info("User '{user_id}' inserted into group '{group_id}' with role '{group_role}'")
         },
         #' @description Delete an user from a group
-        group_user_delete = function(org_id, group_id, user_id) {
+        group_user_delete = function(group_id, user_id) {
             statement <-
                 "DELETE FROM group_users
                 WHERE
-                    org_id = {org_id} AND
                     group_id = {group_id} AND
                     user_id = {user_id}"
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
-            cli::cli_alert_info("User '{user_id}' deleted from group '{group_id}' in org '{org_id}'")
+            if (interactive()) cli::cli_alert_info("User '{user_id}' deleted from group '{group_id}'")
         },
 
         #' @description Edit the role of a user inside a group and related information
-        group_user_edit = function(org_id, group_id, user_id, user_color, group_role) {
+        group_user_edit = function(group_id, user_id, user_color, group_role) {
             
             statement <-
                 "UPDATE group_users
@@ -111,28 +136,14 @@ Group <- R6::R6Class(
                     user_color = {user_color},
                     group_role = {group_role}
                 WHERE
-                    org_id = {org_id} AND
                     group_id = {group_id} AND
                     user_id = {user_id}"
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
-            cli::cli_alert_info("User '{user_id}' now has role '{group_role}' and color '{user_color}' in group '{group_id}'")
+            if (interactive()) cli::cli_alert_info("User '{user_id}' now has role '{group_role}' and color '{user_color}' in group '{group_id}'")
         },
-        #' @description Remove the existence of an organisation
-        group_finalize = function(org_id, group_id) {
-            statement <-
-                "DELETE FROM group_users
-                WHERE
-                    org_id = {org_id} AND
-                    group_id = {group_id}"
-
-            super$db_execute_statement(statement, .envir = rlang::current_env())
-
-            private$group_delete(org_id, group_id)
-
-            cli::cli_alert_info("Finalized group '{group_id}' in org '{org_id}'")
-        },
+        
         #' @description Select a group for use in the board
         group_select = function(group_id) {
             self$group_selected <- group_id
@@ -157,7 +168,7 @@ Group <- R6::R6Class(
             "
             super$db_execute_statement(statement, .envir = rlang::current_env())
             
-            cli::cli_alert_info("Inserted unit '{unit_id}' into group '{self$group_selected}'")
+            if (interactive()) cli::cli_alert_info("Inserted unit '{unit_id}' into group '{self$group_selected}'")
         },
         
         #' @description Edit a measurement unit from a group
@@ -177,7 +188,7 @@ Group <- R6::R6Class(
             "
             super$db_execute_statement(statement, .envir = rlang::current_env())
             
-            cli::cli_alert_info("Edited unit '{unit_id}' from '{self$group_selected}'")
+            if (interactive()) cli::cli_alert_info("Edited unit '{unit_id}' from '{self$group_selected}'")
         },
         
         #' @description Delete a measurement unit from a group
@@ -188,7 +199,7 @@ Group <- R6::R6Class(
                 .envir = rlang::current_env()
             )
             
-            cli::cli_alert_info("Deleted unit '{unit_id}' from group '{self$group_selected}'")
+            if (interactive()) cli::cli_alert_info("Deleted unit '{unit_id}' from group '{self$group_selected}'")
         }
     ),
     private = list(
@@ -196,16 +207,15 @@ Group <- R6::R6Class(
 
             query <-
                 "SELECT
-                    lhs.org_id, lhs.group_id, lhs.group_role,
+                    lhs.group_id, lhs.group_role,
                     rhs.group_title, rhs.group_description,
                     rhs.parent_group, rhs.time_creation, rhs.time_last_modified
                 FROM (
-                    SELECT org_id, group_id, group_role
+                    SELECT group_id, group_role
                     FROM group_users
                     WHERE user_id = {self$user$user_id}
                 ) lhs
                 LEFT JOIN groups rhs ON
-                    lhs.org_id = rhs.org_id AND
                     lhs.group_id = rhs.group_id"
 
             db_data <- super$db_get_query(query)
@@ -221,12 +231,11 @@ Group <- R6::R6Class(
                     rhs.*,
                     rhs2.name, rhs2.last_name
                 FROM (
-                    SELECT org_id, group_id
+                    SELECT group_id
                     FROM group_users
                     WHERE user_id = {self$user$user_id}
                 ) lhs
                 LEFT JOIN group_users rhs ON
-                    lhs.org_id = rhs.org_id AND
                     lhs.group_id = rhs.group_id
                 LEFT JOIN users rhs2 ON
                     rhs.user_id = rhs2.user_id
@@ -242,30 +251,6 @@ Group <- R6::R6Class(
                     ~purrr::pmap(.x, list) |>
                         setNames(.x$user_id)
                 )
-        },
-        group_create = function(org_id, parent_group = "organisation") {
-            group_id <- ids::random_id()
-
-            statement <-
-                "INSERT INTO groups
-                SET
-                    org_id = {org_id},
-                    group_id = {group_id},
-                    group_title = 'Sin nombre',
-                    group_description = '',
-                    parent_group = {parent_group}"
-            super$db_execute_statement(statement, .envir = rlang::current_env())
-
-            return(group_id)
-        },
-        group_delete = function(org_id, group_id) {
-            statement <-
-                "DELETE FROM groups
-                WHERE
-                    org_id = {org_id} AND
-                    group_id = {group_id}"
-
-            super$db_execute_statement(statement, .envir = rlang::current_env())
         },
         group_add_default_units = function() {
             defaults <- c("Informe", "Proyecto de informe", "Proyecto de oficio", 

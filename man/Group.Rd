@@ -37,11 +37,12 @@ R6 class that allows to get the Group information.
 \itemize{
 \item \href{#method-Group-new}{\code{Group$new()}}
 \item \href{#method-Group-group_initialize}{\code{Group$group_initialize()}}
+\item \href{#method-Group-group_add}{\code{Group$group_add()}}
+\item \href{#method-Group-group_delete}{\code{Group$group_delete()}}
 \item \href{#method-Group-group_edit}{\code{Group$group_edit()}}
 \item \href{#method-Group-group_user_add}{\code{Group$group_user_add()}}
 \item \href{#method-Group-group_user_delete}{\code{Group$group_user_delete()}}
 \item \href{#method-Group-group_user_edit}{\code{Group$group_user_edit()}}
-\item \href{#method-Group-group_finalize}{\code{Group$group_finalize()}}
 \item \href{#method-Group-group_select}{\code{Group$group_select()}}
 \item \href{#method-Group-group_unit_add}{\code{Group$group_unit_add()}}
 \item \href{#method-Group-group_unit_edit}{\code{Group$group_unit_edit()}}
@@ -104,12 +105,12 @@ Initialize a group for a new user
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Group-group_edit"></a>}}
-\if{latex}{\out{\hypertarget{method-Group-group_edit}{}}}
-\subsection{Method \code{group_edit()}}{
-Edit group metadata
+\if{html}{\out{<a id="method-Group-group_add"></a>}}
+\if{latex}{\out{\hypertarget{method-Group-group_add}{}}}
+\subsection{Method \code{group_add()}}{
+Add a group to the database
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Group$group_edit(org_id, group_id, group_title, group_description)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Group$group_add(org_id, group_title, group_description)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -117,6 +118,42 @@ Edit group metadata
 \describe{
 \item{\code{org_id}}{The id of the organisation on which the statement will be executed}
 
+\item{\code{group_title}}{The new title of the group}
+
+\item{\code{group_description}}{The new description of the group}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Group-group_delete"></a>}}
+\if{latex}{\out{\hypertarget{method-Group-group_delete}{}}}
+\subsection{Method \code{group_delete()}}{
+Remove a group from the database
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Group$group_delete(group_id)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{group_id}}{The id of the group on which the statement will be executed}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Group-group_edit"></a>}}
+\if{latex}{\out{\hypertarget{method-Group-group_edit}{}}}
+\subsection{Method \code{group_edit()}}{
+Edit group metadata
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Group$group_edit(group_id, group_title, group_description)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
 \item{\code{group_id}}{The id of the group on which the statement will be executed}
 
 \item{\code{group_title}}{The new title of the group}
@@ -133,7 +170,6 @@ Edit group metadata
 Add an user to a group
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Group$group_user_add(
-  org_id,
   group_id,
   user_id,
   user_color = "white",
@@ -144,8 +180,6 @@ Add an user to a group
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{org_id}}{The id of the organisation on which the statement will be executed}
-
 \item{\code{group_id}}{The id of the group on which the statement will be executed}
 
 \item{\code{user_id}}{The id of the user on which the statement will be executed}
@@ -163,14 +197,12 @@ Add an user to a group
 \subsection{Method \code{group_user_delete()}}{
 Delete an user from a group
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Group$group_user_delete(org_id, group_id, user_id)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Group$group_user_delete(group_id, user_id)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{org_id}}{The id of the organisation on which the statement will be executed}
-
 \item{\code{group_id}}{The id of the group on which the statement will be executed}
 
 \item{\code{user_id}}{The id of the user on which the statement will be executed}
@@ -184,14 +216,12 @@ Delete an user from a group
 \subsection{Method \code{group_user_edit()}}{
 Edit the role of a user inside a group and related information
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Group$group_user_edit(org_id, group_id, user_id, user_color, group_role)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Group$group_user_edit(group_id, user_id, user_color, group_role)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{org_id}}{The id of the organisation on which the statement will be executed}
-
 \item{\code{group_id}}{The id of the group on which the statement will be executed}
 
 \item{\code{user_id}}{The id of the user on which the statement will be executed}
@@ -199,25 +229,6 @@ Edit the role of a user inside a group and related information
 \item{\code{user_color}}{The color of the user's cards}
 
 \item{\code{group_role}}{The role for the user in the group}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Group-group_finalize"></a>}}
-\if{latex}{\out{\hypertarget{method-Group-group_finalize}{}}}
-\subsection{Method \code{group_finalize()}}{
-Remove the existence of an organisation
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Group$group_finalize(org_id, group_id)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{org_id}}{The id of the organisation on which the statement will be executed}
-
-\item{\code{group_id}}{The id of the group on which the statement will be executed}
 }
 \if{html}{\out{</div>}}
 }
