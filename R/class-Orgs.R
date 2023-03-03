@@ -26,7 +26,7 @@ Organisation <- R6::R6Class(
                 org_role = "owner"
             )
 
-            cli::cli_alert_info("Initialized org '{org_id}'")
+            if (interactive()) cli::cli_alert_info("Initialized org '{org_id}'")
         },
         #' @description Add a new organisation to the database
         org_add = function(org_title, org_description) {
@@ -49,7 +49,7 @@ Organisation <- R6::R6Class(
                 WHERE org_id = {org_id}"
             
             super$db_execute_statement(statement, .envir = rlang::current_env())
-            cli::cli_alert_info("Deleted org '{org_id}'")
+            if (interactive()) cli::cli_alert_info("Deleted org '{org_id}'")
         },
         #' @description Edit Organisation metadata
         org_edit = function(org_id, org_title, org_description) {
@@ -63,7 +63,7 @@ Organisation <- R6::R6Class(
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
-            cli::cli_alert_info("Edited org '{org_id}'")
+            if (interactive()) cli::cli_alert_info("Edited org '{org_id}'")
         },
         
         #' @description Add an user to an organisation
@@ -77,7 +77,7 @@ Organisation <- R6::R6Class(
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
-            cli::cli_alert_info("User '{user_id}' inserted into org '{org_id}' with role '{org_role}'")
+            if (interactive()) cli::cli_alert_info("User '{user_id}' inserted into org '{org_id}' with role '{org_role}'")
         },
         
         #' @description Delete an user from an organisation
@@ -90,7 +90,7 @@ Organisation <- R6::R6Class(
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
-            cli::cli_alert_info("User '{user_id}' deleted from org '{org_id}'")
+            if (interactive()) cli::cli_alert_info("User '{user_id}' deleted from org '{org_id}'")
         },
 
         #' @description Edit the role of a user inside an organisation
@@ -105,7 +105,7 @@ Organisation <- R6::R6Class(
 
             super$db_execute_statement(statement, .envir = rlang::current_env())
 
-            cli::cli_alert_info("User '{user_id}' now has role '{org_role}' in org '{org_id}'")
+            if (interactive()) cli::cli_alert_info("User '{user_id}' now has role '{org_role}' in org '{org_id}'")
         },
 
 
@@ -119,7 +119,7 @@ Organisation <- R6::R6Class(
 
             private$org_delete(org_id)
 
-            cli::cli_alert_info("Finalized org '{org_id}'")
+            if (interactive()) cli::cli_alert_info("Finalized org '{org_id}'")
         }
     ),
     private = list(

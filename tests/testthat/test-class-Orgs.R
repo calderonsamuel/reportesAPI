@@ -32,3 +32,48 @@ test_that("Org data can be retrieved", {
     expect_type(test_Orgs$orgs, "list")
     expect_named(test_Orgs$orgs)
 })
+
+test_that("Org user can be added and edited", {
+    test_Orgs <- Organisation$new(email = Sys.getenv("REPORTES_EMAIL"))
+    
+    expect_equal({
+        test_Orgs$org_user_add(
+            org_id = Sys.getenv("REPORTES_API_TEST_ORG"),
+            user_id = test_Orgs$user$user_id,
+            org_role = "user"
+        )
+        
+        test_Orgs$org_user_edit(
+            org_id = Sys.getenv("REPORTES_API_TEST_ORG"),
+            user_id = test_Orgs$user$user_id,
+            org_role = "admin"
+        )
+        
+        "ok"
+    }, expected = "ok")
+})
+
+test_that("Org users data can be retrieved", {
+    test_Orgs <- Organisation$new(email = Sys.getenv("REPORTES_EMAIL"))
+    
+    test_Orgs$org_user_add(
+        org_id = Sys.getenv("REPORTES_API_TEST_ORG"),
+        user_id = test_Orgs$user$user_id,
+        org_role = "user"
+    )
+    
+    expect_type(test_Orgs$org_users, "list")
+    expect_named(test_Orgs$org_users)
+})
+
+test_that("Org user can be deleted", {
+    test_Orgs <- Organisation$new(email = Sys.getenv("REPORTES_EMAIL"))
+    
+    expect_equal({
+        test_Orgs$org_user_delete(
+            org_id = Sys.getenv("REPORTES_API_TEST_ORG"),
+            user_id = test_Orgs$user$user_id
+        )
+        "ok"
+    }, expected = "ok")
+})
