@@ -18,7 +18,7 @@ Organisation <- R6::R6Class(
         },
         #' @description Initialize an organisation for a new user
         org_initialize = function() {
-            org_id <- private$org_create()
+            org_id <- self$org_add("Organización sin nombre", "")
 
             self$org_user_add(
                 org_id = org_id,
@@ -27,6 +27,29 @@ Organisation <- R6::R6Class(
             )
 
             cli::cli_alert_info("Initialized org '{org_id}'")
+        },
+        #' @description Add a new organisation to the database
+        org_add = function(org_title, org_description) {
+            id <- ids::random_id()
+            
+            statement <-
+                "INSERT INTO organisations
+                SET
+                    org_id = {id},
+                    org_title = {org_title},
+                    org_description = {org_description}"
+            super$db_execute_statement(statement, .envir = rlang::current_env())
+            
+            return(id)
+        },
+        #' @description Delete an organisation from the database
+        org_delete = function(org_id) {
+            statement <-
+                "DELETE FROM organisations
+                WHERE org_id = {org_id}"
+            
+            super$db_execute_statement(statement, .envir = rlang::current_env())
+            cli::cli_alert_info("Deleted org '{org_id}'")
         },
         #' @description Edit Organisation metadata
         org_edit = function(org_id, org_title, org_description) {
@@ -42,6 +65,7 @@ Organisation <- R6::R6Class(
 
             cli::cli_alert_info("Edited org '{org_id}'")
         },
+        
         #' @description Add an user to an organisation
         org_user_add = function(org_id, user_id, org_role) {
             statement <-
@@ -55,6 +79,7 @@ Organisation <- R6::R6Class(
 
             cli::cli_alert_info("User '{user_id}' inserted into org '{org_id}' with role '{org_role}'")
         },
+        
         #' @description Delete an user from an organisation
         org_user_delete = function(org_id, user_id) {
             statement <-
@@ -146,27 +171,6 @@ Organisation <- R6::R6Class(
                     ~purrr::pmap(.x, list) |>
                         setNames(.x$user_id)
                 )
-        },
-        org_create = function() {
-            id <- ids::random_id()
-
-            statement <-
-                "INSERT INTO organisations
-                SET
-                    org_id = {id},
-                    org_title = 'Organizacion sin nombre',
-                    org_description = ''"
-            super$db_execute_statement(statement, .envir = rlang::current_env())
-
-            return(id)
-        },
-        org_delete = function(org_id) {
-            statement <-
-                "DELETE FROM organisations
-                WHERE org_id = {org_id}"
-
-            super$db_execute_statement(statement, .envir = rlang::current_env())
-            private$sync_orgs()
         }
     ),
     active = list(

@@ -28,6 +28,8 @@ R6 class that allows to get the Organisation information.
 \itemize{
 \item \href{#method-Organisation-new}{\code{Organisation$new()}}
 \item \href{#method-Organisation-org_initialize}{\code{Organisation$org_initialize()}}
+\item \href{#method-Organisation-org_add}{\code{Organisation$org_add()}}
+\item \href{#method-Organisation-org_delete}{\code{Organisation$org_delete()}}
 \item \href{#method-Organisation-org_edit}{\code{Organisation$org_edit()}}
 \item \href{#method-Organisation-org_user_add}{\code{Organisation$org_user_add()}}
 \item \href{#method-Organisation-org_user_delete}{\code{Organisation$org_user_delete()}}
@@ -74,6 +76,42 @@ Initialize an organisation for a new user
 \if{html}{\out{<div class="r">}}\preformatted{Organisation$org_initialize()}\if{html}{\out{</div>}}
 }
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Organisation-org_add"></a>}}
+\if{latex}{\out{\hypertarget{method-Organisation-org_add}{}}}
+\subsection{Method \code{org_add()}}{
+Add a new organisation to the database
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Organisation$org_add(org_title, org_description)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{org_title}}{The new title of the organisation}
+
+\item{\code{org_description}}{The new description of the organisation}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Organisation-org_delete"></a>}}
+\if{latex}{\out{\hypertarget{method-Organisation-org_delete}{}}}
+\subsection{Method \code{org_delete()}}{
+Delete an organisation from the database
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Organisation$org_delete(org_id)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{org_id}}{The id of the organisation on which the statement will be executed}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Organisation-org_edit"></a>}}
