@@ -204,7 +204,19 @@ Task <- R6::R6Class(
         report_delete = function(report_id) {
             statement <- glue::glue_sql(
                 "DELETE FROM reports
-                WHERE report_id = {report_id}",
+                WHERE report_id IN ({report_id*})",
+                .con = private$con
+            )
+            
+            DBI::dbExecute(private$con, statement)
+        },
+        #' @description Archive a report and its contributions.
+        report_archive = function(report_id) {
+            statement <- glue::glue_sql(
+                "UPDATE reports
+                SET archived = 1
+                WHERE 
+                    report_id IN ({report_id*})",
                 .con = private$con
             )
             
