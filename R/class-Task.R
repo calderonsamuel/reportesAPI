@@ -167,7 +167,9 @@ Task <- R6::R6Class(
         #' @description Add a report and the quantities it has contributed in the specified units
         report_add = function(report_title, details, units, quantities) {
             
-            stopifnot(length(units) == length(quantities))
+            if (length(units) != length(quantities)) {
+                cli::cli_abort("`units` and `quantities` must be of the same size")
+            }
             
             report_id <- ids::random_id()
             
