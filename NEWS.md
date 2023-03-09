@@ -1,3 +1,7 @@
+# reportesAPI 0.3.3
+
+- Adds methods for getting reports data
+
 # reportesAPI 0.3.2
 
 - Adds methods for inserting and deleting reports
