@@ -163,6 +163,40 @@ Task <- R6::R6Class(
                     lhs.reported_by = rhs.user_id"
 
             super$db_get_query(query, subquery = subquery_progress)
+        },
+        #' @description Add a report and the quantities it has contributed in the specified units
+        report_add = function(report_title, details, units, quantities) {
+            
+            stopifnot(length(units) == length(quantities))
+            
+            report_id <- ids::random_id()
+            
+            all_values <- glue::glue_sql("({report_id}, {units}, {quantities})", .con = private$con)
+            
+            report_insertion <- glue::glue_sql(
+                "
+                INSERT INTO reports(report_id, report_title, details, reported_by, group_id)
+                VALUES
+                    ({report_id}, {report_title}, {details}, {self$user$user_id}, {self$group_selected});
+                ",
+                .con = private$con
+            )
+            
+            quantities_insertion <- glue::glue_sql(
+                "
+                INSERT INTO report_quantities(report_id, output_unit, output_progress)
+                    VALUES
+                        {all_values*};
+                ",
+                .con = private$con
+            )
+            
+            DBI::dbBegin(private$con)
+            
+            DBI::dbExecute(conn = private$con, report_insertion)
+            DBI::dbExecute(conn = private$con, quantities_insertion)
+            
+            DBI::dbCommit(private$con)
         }
     ),
     private = list(
