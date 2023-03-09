@@ -269,6 +269,43 @@ Task <- R6::R6Class(
         #' @field tasks List containing the tasks an User can interact with
         tasks = function() {
             private$get_tasks()
+        },
+        reports = function() {
+            statement <- glue::glue_sql(
+                "SELECT 
+                    lhs.report_id, lhs.report_title, lhs.details, 
+                    lhs.reported_by, lhs.time_reported, 
+                    rhs.output_unit, rhs.output_progress
+                FROM (
+                    SELECT * FROM reports
+                    WHERE 
+                        group_id = {self$group_selected} AND
+                        archived IS FALSE
+                ) AS lhs
+                LEFT JOIN report_quantities rhs ON
+                    lhs.report_id = rhs.report_id
+                ",
+                .con = private$con
+            )
+            
+            data <- DBI::dbGetQuery(private$con, statement)
+            
+            data |> 
+                split(~report_id) |> 
+                unname() |> 
+                lapply(\(x) {
+                    list(
+                        report_id = x$report_id[1],
+                        report_title = x$report_title[1],
+                        details = x$details[1],
+                        reported_by = x$reported_by[1],
+                        time_reported = x$time_reported[1],
+                        quantities = purrr::map2(x$output_unit, x$output_progress, ~list(
+                            output_unit = .x,
+                            output_progress = .y
+                        ))
+                    )
+                })
         }
     )
 )
