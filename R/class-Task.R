@@ -199,6 +199,16 @@ Task <- R6::R6Class(
             DBI::dbExecute(conn = private$con, quantities_insertion)
             
             DBI::dbCommit(private$con)
+        },
+        #' @description Delete a report and its contributions from the database.
+        report_delete = function(report_id) {
+            statement <- glue::glue_sql(
+                "DELETE FROM reports
+                WHERE report_id = {report_id}",
+                .con = private$con
+            )
+            
+            DBI::dbExecute(private$con, statement)
         }
     ),
     private = list(
