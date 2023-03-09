@@ -1,3 +1,7 @@
+# reportesAPI 0.3.2
+
+- Adds methods for inserting and deleting reports
+
 # reportesAPI 0.3.1
 
 - Fixed a bug that prevented successful retrieval of groups data
