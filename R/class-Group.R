@@ -149,6 +149,40 @@ Group <- R6::R6Class(
             self$group_selected <- group_id
         },
         
+        #' @description Set selected group as favorite in the database
+        group_set_as_favorite = function() {
+            statement_set_new_favorite <- glue::glue_sql(
+                "UPDATE group_users
+                    SET 
+                        favorite_group = TRUE
+                    WHERE 
+                        user_id = {user_id} AND
+                        group_id = {group_id}
+                ",
+                .con = private$con,
+                user_id = self$user$user_id,
+                group_id = self$group_selected
+            )
+            
+            statement_forget_old_favorite <- glue::glue_sql(
+                "UPDATE group_users
+                    SET 
+                        favorite_group = FALSE
+                    WHERE
+                        user_id = {user_id} AND
+                        group_id != {group_id}
+                ",
+                .con = private$con,
+                user_id = self$user$user_id,
+                group_id = self$group_selected
+            )
+            
+            DBI::dbBegin(private$con)
+            DBI::dbExecute(private$con, statement_set_new_favorite)
+            DBI::dbExecute(private$con, statement_forget_old_favorite)
+            DBI::dbCommit(private$con)
+        },
+        
         #' @description Add a measurement unit for a group
         group_unit_add = function(unit_title, unit_description = "", unit_type, unit_icon = 'file') {
             unit_id <- ids::random_id()
