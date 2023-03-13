@@ -40,6 +40,8 @@ Organisation <- R6::R6Class(
                     org_description = {org_description}"
             super$db_execute_statement(statement, .envir = rlang::current_env())
             
+            if (interactive()) cli::cli_alert_info("Created org '{id}'")
+            
             return(id)
         },
         #' @description Delete an organisation from the database
